@@ -11,18 +11,18 @@ public class tictactoe {
     }
 
     private static void startBoard(){ //creating game board
-        for (int i=0;i<3;i++){
-            for (int j=0;j<3;j++){
+        for (int i=0;i<3;i++){ //rows
+            for (int j=0;j<3;j++){ // cols
                 board[i][j]='-';
             }
         }
     }
 
-    private static void printBoard(){
-        System.out.println("Board: ");
-        for(int i=0;i<3;i++){
+    private static void printBoard(){ // prints the board
+        System.out.println("Board: "); // adds next line after the print operation
+        for(int i=0;i<3;i++){ // basic array print operation
             for(int k=0;k<3;k++){
-                System.out.print(board[i][k] + "");
+                System.out.print(board[i][k] + "");  
             }
             System.out.println();
         }
