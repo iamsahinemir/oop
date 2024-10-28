@@ -5,9 +5,12 @@ public class tictactoe {
     private static char[][] board=new char[3][3]; // 3x3 game board
     
     public static void main(String[] args){ // main 
-        //doldurulacak
+        
         startBoard();
         printBoard();
+        char currentPlayer = 'X';
+        playerTurn(currentPlayer);
+        
     }
 
     private static void startBoard(){ //creating game board
@@ -28,4 +31,23 @@ public class tictactoe {
         }
     }
     
+    private static void playerTurn(char player){
+        Scanner scanner=new Scanner(System.in);
+        int row, col;
+        boolean isValid=false;
+        while (!isValid){
+            System.out.println("Player " + player + ", please choose row and column number (0, 1 or 2): ");
+            row=scanner.nextInt();
+            col=scanner.nextInt();
+
+            if(row>=0 && row<3 && col>=0 && col<3 && board[row][col]=='-'){
+                board[row][col]=player;
+                isValid=true;
+            }
+            else{
+                System.out.println("Unavaliable move, try again");
+            }
+        }
+    }
+
 }
