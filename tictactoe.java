@@ -7,10 +7,26 @@ public class tictactoe {
     public static void main(String[] args){ // main 
         
         startBoard();
-        printBoard();
         char currentPlayer = 'X';
-        playerTurn(currentPlayer);
-        whoWins(currentPlayer);
+        boolean winSituation=false;
+        int totMoves=0;
+        while(!winSituation && totMoves<9){
+            printBoard();
+            playerTurn(currentPlayer);
+            winSituation= whoWins(currentPlayer);
+            if(winSituation){
+                printBoard();
+                System.out.println("Player " + currentPlayer + " won!");
+
+            }
+            else if(totMoves==8){
+                printBoard();
+                System.out.println("There is no winner. Tie situation!");
+            }
+            currentPlayer=(currentPlayer=='X')?'O':'X';
+            totMoves++;
+
+        }
         
     }
 
@@ -53,21 +69,21 @@ public class tictactoe {
     }
 
     private static boolean whoWins(char player) {
-        // Satırları kontrol et
+        // check rows of board
         for (int i = 0; i < 3; i++) {
             if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
                 return true;
             }
         }
 
-        // Sütunları kontrol et
+        // check columns of board
         for (int j = 0; j < 3; j++) {
             if (board[0][j] == player && board[1][j] == player && board[2][j] == player) {
                 return true;
             }
         }
 
-        // Çaprazları kontrol et
+        // check crosses of board
         if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
             return true;
         }
@@ -75,7 +91,7 @@ public class tictactoe {
             return true;
         }
 
-        return false;  // Kazanma durumu yoksa false döner
+        return false;  // If there is no win situation, it returns false
     }
 
 
