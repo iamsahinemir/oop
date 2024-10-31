@@ -18,7 +18,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        
+        /**
+         * ASCII art to welcome user
+         * @author Sezai Araplarlı
+         */
     	String asciiArt0 =
                         " __      _____________.____   _________  ________      _____  ___________ \n"+
     		            "/  \\    /  \\_   _____/|    |  \\_   ___ \\ \\_____  \\    /     \\ \\_   _____/ \n"+
