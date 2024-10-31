@@ -49,7 +49,7 @@ public class tictactoe {
     }
     
     private static void playerTurn(char player){ // player turn
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int row, col;
         boolean isValid=false;
         while (!isValid){
@@ -66,6 +66,7 @@ public class tictactoe {
                 System.out.println("Unavaliable move, try again");
             }
         }
+    
     }
 
     private static boolean whoWins(char player) {
@@ -92,6 +93,7 @@ public class tictactoe {
         }
 
         return false;  // If there is no win situation, it returns false
+        
     }
 
 
