@@ -507,6 +507,14 @@ public class Main {
     
     // METHODS OF STATISTICS OF AN ARRAY PART
 
+    /**
+     * Calculates the sum of the elements in the array.
+     *
+     * @param array The array of integers
+     * @return The sum of the array elements
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     public static int calculateSum(int[] array) {
         int sum = 0;
         for (int num : array) {
@@ -514,11 +522,27 @@ public class Main {
         }
         return sum;
     }
-
+ 
+    /**
+     * Calculates the mean (average) of the elements in the array.
+     *
+     * @param array The array of integers
+     * @return The mean of the array elements
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     public static double calculateMean(int[] array) {
         return (double) calculateSum(array) / array.length;
     }
 
+    /**
+     * Calculates the median of the elements in the array.
+     *
+     * @param array The array of integers
+     * @return The median value
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     public static double calculateMedian(int[] array) {
         Arrays.sort(array);
         int middle = array.length / 2;
@@ -529,6 +553,14 @@ public class Main {
         }
     }
 
+    /**
+     * Calculates the mode of the elements in the array. In case of a tie, returns the first mode found.
+     *
+     * @param array The array of integers
+     * @return The mode value
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     public static int calculateMode(int[] array) {
         int maxValue = 0, maxCount = 0;
         for (int i = 0; i < array.length; ++i) {
@@ -544,6 +576,14 @@ public class Main {
         return maxValue;
     }
 
+    /**
+     * Calculates the standard deviation of the elements in the array.
+     *
+     * @param array The array of integers
+     * @return The standard deviation
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     public static double calculateStandardDeviation(int[] array) {
         double mean = calculateMean(array);
         double sum = 0;
