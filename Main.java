@@ -16,12 +16,17 @@ public class Main {
     final private static String squareError ="Matrix must be Square. ";
     final private static String inputScalar ="Enter the scalar value. ";
 
+    /**
+     * ASCII art to welcome the user
+     * Main menu to decide on operations
+     * Using if - else structure to call and combine the necessary methods and perform the selected operation
+     * @param args Command line arguments
+     * @author Sezai Araplarlı
+     */
     public static void main(String[] args) {
 
-        /**
-         * ASCII art to welcome user
-         * @author Sezai Araplarlı
-         */
+
+
     	String asciiArt0 =
                         " __      _____________.____   _________  ________      _____  ___________ \n"+
     		            "/  \\    /  \\_   _____/|    |  \\_   ___ \\ \\_____  \\    /     \\ \\_   _____/ \n"+
@@ -951,6 +956,12 @@ public class Main {
 		return message;
 	}
 
+    /**
+     * 
+     * @return
+     * @author Tunahan Tuze
+     * @author Sezai Araplarlı
+     */
 	public static int enc_number(){
         
         int number;
@@ -1020,6 +1031,12 @@ public class Main {
         }
     }
     
+    /**
+     * 
+     * @param player
+     * @author Emir Esad Şahin
+     * @author Sezai Araplarlı
+     */
     private static void playerTurn(char player){ // player turn
         int row, col;
         boolean isValid=false;
