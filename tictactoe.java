@@ -31,8 +31,10 @@ public class tictactoe {
     }
 
     private static void startBoard(){ //creating game board
+        
         for (int i=0;i<3;i++){ //rows
             for (int j=0;j<3;j++){ // cols
+                
                 board[i][j]='-';
             }
         }
