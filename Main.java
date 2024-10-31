@@ -595,7 +595,13 @@ public class Main {
     
 
     // METHODS OF MATRIX OPERATIONS 
-
+    /**
+     * Prompts the user to enter the values of two matrices and returns them in a list.
+     *
+     * @return ArrayList containing matrix dimensions and data or null if validation fails
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static ArrayList getValuesByUser() {
         System.out.print("First " + inputMatrixRow);
         int matrix1Rows = scanner.nextInt();
@@ -608,7 +614,7 @@ public class Main {
         System.out.print("Second " + inputMatrixColumn);
         int matrix2Columns = scanner.nextInt();
 
-
+     // Validation of matrix compatibility for operations
         if (matrix1Columns != matrix2Rows) {
             System.out.println(matrixMatchError);
             return null;
@@ -646,7 +652,13 @@ public class Main {
             return (ArrayList) values;
         }
     }
-
+    /**
+     * Prompts the user to enter scalar and matrix values for scalar-matrix operations.
+     *
+     * @return ArrayList containing scalar, matrix dimensions, and matrix data or null if validation fails
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static ArrayList getScalarAndMatrixValuesByUser() {
         System.out.print(inputScalar);
         double scalar = scanner.nextDouble();
@@ -681,7 +693,14 @@ public class Main {
             return (ArrayList) values;
         }
     }
-
+    /**
+     * Prompts the user to enter values for a single matrix and validates matrix dimensions.
+     *
+     * @param caseValue Integer specifying a specific matrix operation
+     * @return ArrayList containing matrix dimensions and matrix data or null if validation fails
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static ArrayList getOnlyMatrixValuesByUser(int caseValue) {
 
         System.out.print(inputMatrixRow);
@@ -719,7 +738,22 @@ public class Main {
             return (ArrayList) values;
         }
     }
+    
+    
+    
+    
 
+    /**
+     * Adds two matrices and prints the resulting matrix.
+     * @param matrix1Rows    The number of rows in the first matrix
+     * @param matrix1Columns The number of columns in the first matrix
+     * @param matrix2Rows    The number of rows in the second matrix
+     * @param matrix2Columns The number of columns in the second matrix
+     * @param matrix1        The first matrix as a 2D array
+     * @param matrix2        The second matrix as a 2D arrays
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static void matrixAddition(int matrix1Rows, int matrix1Columns, int matrix2Rows, int matrix2Columns, double[][] matrix1, double[][] matrix2) {
 
 
@@ -740,7 +774,18 @@ public class Main {
             System.out.println();
         }
     }
-
+    /**
+     * Performs subtraction of two matrices and displays the result.
+     *
+     * @param matrix1Rows     the number of rows in the first matrix
+     * @param matrix1Columns  the number of columns in the first matrix
+     * @param matrix2Rows     the number of rows in the second matrix
+     * @param matrix2Columns  the number of columns in the second matrix
+     * @param matrix1        the first matrix
+     * @param matrix2        the second matrix
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static void matrixSubstraction(int matrix1Rows, int matrix1Columns, int matrix2Rows, int matrix2Columns, double[][] matrix1, double[][] matrix2) {
 
         double[][] matrixResult = new double[matrix1Rows][matrix1Columns];
@@ -761,7 +806,20 @@ public class Main {
             }
         }
     }
+    
 
+    /**
+     * Performs multiplication of two matrices and displays the result.
+     *
+     * @param matrix1Rows     the number of rows in the first matrix
+     * @param matrix1Columns  the number of columns in the first matrix
+     * @param matrix2Rows     the number of rows in the second matrix
+     * @param matrix2Columns  the number of columns in the second matrix
+     * @param matrix1        the first matrix
+     * @param matrix2        the second matrix
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static void matrixMultiplication(int matrix1Rows, int matrix1Columns, int matrix2Rows, int matrix2Columns, double[][] matrix1, double[][] matrix2) {
 
         double[][] matrixResult = new double[matrix1Rows][matrix2Columns];
@@ -786,7 +844,17 @@ public class Main {
         }
     }
 
-
+    
+    /**
+     * Performs scalar multiplication on a matrix and displays the result.
+     *
+     * @param matrixRows     the number of rows in the matrix
+     * @param matrixColumns  the number of columns in the matrix
+     * @param matrix        the matrix to be multiplied
+     * @param scalar        the scalar value to multiply the matrix 
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static void scalarMultiplicationMatrix(int matrixRows, int matrixColumns, double[][] matrix, double scalar) {
 
         double[][] resultMatrix = new double[matrixRows][matrixColumns];
@@ -805,7 +873,16 @@ public class Main {
             System.out.println();
         }
     }
-
+    /**
+     * Performs scalar division on a matrix and displays the result.
+     *
+     * @param matrixRows     the number of rows in the matrix
+     * @param matrixColumns  the number of columns in the matrix
+     * @param matrix        the matrix to be divided
+     * @param scalar        the scalar value to divide the matrix
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static void scalarDivisionMatrix(int matrixRows, int matrixColumns, double[][] matrix, double scalar) {
 
         double[][] resultMatrix = new double[matrixRows][matrixColumns];
@@ -824,7 +901,17 @@ public class Main {
             System.out.println();
         }
     }
-
+    
+    /**
+     * Calculates and displays the trace of a square matrix.
+     *
+     * @param matrixRows     the number of rows in the matrix
+     * @param matrixColumns  the number of columns in the matrix
+     * @param matrix        the square matrix to calculate the trace 
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
+    
     private static void traceOfMatrix(int matrixRows, int matrixColumns, double[][] matrix) {
         if (matrixRows != matrixColumns) {
             System.out.println("Error: The trace is only defined for a square matrix.");
@@ -839,7 +926,16 @@ public class Main {
             System.out.println("Trace of the matrix is: " + trace);
         }
     }
-
+    
+    /**
+     * Calculates the inverse of a square matrix using the Gauss-Jordan elimination method.
+     *
+     * @param matrixRows     the number of rows in the matrix
+     * @param matrixColumns  the number of columns in the matrix
+     * @param matrix        the square matrix to find the inverse 
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static void inverse(int matrixRows, int matrixColumns, double[][] matrix) {
         int n = matrix.length;
 
@@ -893,7 +989,20 @@ public class Main {
         }
         System.out.println();
     }
-
+    
+    /**
+     * Checks whether two matrices are orthogonal by calculating the product of the first matrix 
+     * and the transpose of the second matrix.
+     *
+     * @param matrix1Rows     the number of rows in the first matrix
+     * @param matrix1Columns  the number of columns in the first matrix
+     * @param matrix2Rows     the number of rows in the second matrix
+     * @param matrix2Columns  the number of columns in the second matrix
+     * @param matrix1        the first matrix
+     * @param matrix2        the second matrix
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static void checkOrthogonality(int matrix1Rows, int matrix1Columns, int matrix2Rows, int matrix2Columns, double[][] matrix1, double[][] matrix2) {
 
 
@@ -939,7 +1048,16 @@ public class Main {
 
     }
 
-
+    
+    /**
+     * Calculates the transpose of a given matrix.
+     * @param matrixRows     the number of rows in the matrix
+     * @param matrixColumns  the number of columns in the matrix
+     * @param matrix         the matrix to be transposed
+     * @return              the transposed matrix
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static double[][] matrixTranspose(int matrixRows, int matrixColumns, double[][] matrix) {
 
 
@@ -964,7 +1082,12 @@ public class Main {
         return transpose;
     }
 
-
+    /**
+     * Calculates the adjoint of a square matrix.
+     * @param matrix the square matrix to find the adjoint
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     private static void adjointMatrix(double[][] matrix) {
         int n = matrix.length;
         double[][] adjoint = new double[n][n];
@@ -985,7 +1108,14 @@ public class Main {
             System.out.println();
         }
     }
-
+    /**
+     * Calculates the determinant of a square matrix.
+     *
+     * @param matrix the square matrix to calculate the determinant 
+     * @return      the determinant of the matrix
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin    
+     */
     private static double determinant(double[][] matrix) {
         int n = matrix.length;
         if (n == 1) {
@@ -1004,7 +1134,17 @@ public class Main {
 
         return det;
     }
-
+    /**
+     * Gets the minor of a matrix by removing a specified row and column.
+     *
+     * @param matrix the matrix from which to get the minor
+     * @param row    the row to remove
+     * @param col    the column to remove
+     * @return      the minor matrix
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin    
+     */
+     
     private static double[][] getMinor(double[][] matrix, int row, int col) {
         int n = matrix.length;
         double[][] minor = new double[n - 1][n - 1];
