@@ -6,7 +6,26 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The Main class provides methods for matrix operations such as addition, multiplication,
+ * and scalar calculations, along with handling user input and file operations.
+ * @author Zulal Sonmez
+ * @author Dilvin Aydin
+ */
+
 public class Main {
+	/**
+	 * The scanner object use to capture user input from the console.
+	 * This message prompts the user to enter the number of rows of the matrix.
+	 * This message prompts the user to enter the number of column of the matrix.
+	 * This message use for matrix size mismatch during operations.
+	 * This message returns an error when the number of matrices is outside the acceptable range.
+	 * This message use to ask the user to enter matrix elements.
+	 * This message is an error message about when the matrix should be squared to perform certain operations.
+	 * This message asks the user to enter a scalar value.
+	 * @author Zulal Sonmez
+	 * @author Dilvin Aydin
+	 */	
     static Scanner scanner = new Scanner(System.in);
     final private static String inputMatrixRow = "Enter the number of rows of the matrix. ";
     final private static String inputMatrixColumn = "Enter the number of column of the matrix. ";
@@ -115,7 +134,14 @@ public class Main {
             System.out.println(menuBorder);
             System.out.print("Welcome user, please select an operation above :");
             operation = scanner.nextInt();
-    
+            /**
+             * @param statistics operation
+             * This allows the user to enter an array and then select different statistical 
+             * operations to perform on the array, such as calculating the sum, mean, median, mode, 
+             * and standard deviation. The user can request different statistics repeatedly until they choose to exit.
+             * @author Zulal Sonmez
+             * @author Dilvin Aydin
+             */
             if (operation == 1){
                 
                 clearTerminal();
@@ -143,7 +169,8 @@ public class Main {
                     
                     boolean continueQuery = true;
                     while (continueQuery) {
-                        
+                    	
+                    	// Asks the user to choose which statistical information to display
                         System.out.println("Which statistical information would you like to see?");
                         System.out.println("1. Sum");
                         System.out.println("2. Mean");
@@ -187,7 +214,16 @@ public class Main {
                  
                 
             }
-    
+            /**
+             * @param matrix operations
+             * This provides a menu of operations that can be performed on matrices, 
+             * such as addition, subtraction, multiplication, scalar operations, transpose, inverse, 
+             * trace, adjoint, and orthogonality check. The user can repeatedly select an operation 
+             * until they choose to exit.
+             * @author Zulal Sonmez
+             * @author Dilvin Aydin
+             */
+            
             else if (operation == 2){
 
                 clearTerminal();
