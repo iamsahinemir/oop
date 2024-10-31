@@ -118,6 +118,7 @@ public class Main {
     
             if (operation == 1){
                 
+                clearTerminal();
                 boolean continueProgram = true; 
     
                 while (continueProgram) {
@@ -182,13 +183,14 @@ public class Main {
                 }
         
                 System.out.println("Program terminated.");
-                scanner.close(); 
+                clearTerminal();
+                 
                 
             }
     
             else if (operation == 2){
 
-                
+                clearTerminal();
                 List<String> menuList = new ArrayList<>(List.of(
                     "| 1. Matrix Addition                   |",
                     "| 2. Matrix Subtraction                |",
@@ -363,7 +365,7 @@ public class Main {
             else if (operation == 3){
                 String message;
                 int number;
-                
+                clearTerminal();
                 boolean over = true;
                 while(over){
                     System.out.println("Plase select one of them");
@@ -386,6 +388,7 @@ public class Main {
                             if(selection == '*'){
                                 cond=false;
                                 over = false;
+                                clearTerminal();
                             }
                             else if(selection == '+'){
                                 message = getMessage(); // Mesajı al
@@ -410,7 +413,7 @@ public class Main {
             }
     
             else if (operation == 4){
-    
+                clearTerminal();
                 startBoard();
                 char currentPlayer = 'X';
                 boolean winSituation=false;
@@ -423,6 +426,7 @@ public class Main {
                         printBoard();
                         System.out.println("Player " + currentPlayer + " won!");
                         System.out.println("Total number of moves : " + totMoves);
+                        
         
                     }
                     else if(totMoves==8){
@@ -1088,5 +1092,36 @@ public class Main {
         
     }
 
+    // TERMINAL CLEANER METHOD
+
+    /**
+     * clears terminal (may not work on some IDE's)
+     * @author Sezai Araplarlı
+     */
+    public static void clearTerminal() {
+        String operating_system = System.getProperty("os.name").toLowerCase();
+
+        if (operating_system.contains("win")) {
+            runCommand("cmd /c cls"); // for Windows 
+        } else {
+            runCommand("clear");      // for MacOS or Linux 
+        }
+
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    /**
+     * runs command on windows/mac/linux terminals
+     * @param command terminal command to run
+     * @author Sezai Araplarlı
+     */
+    private static void runCommand(String command) {
+        try {
+            new ProcessBuilder(command.split(" ")).inheritIO().start().waitFor();
+        } catch (Exception ignored) {
+
+        }
+    }
 }
 
