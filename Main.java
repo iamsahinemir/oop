@@ -1014,9 +1014,17 @@ public class Main {
 	}
 
     // METHODS OF TIC TAC TOE GAME
-
+    /**
+     * @param board 
+     * This method creates array for 3x3 game board
+     * @author Emir Esad Şahin
+     */
     private static char[][] board=new char[3][3]; // 3x3 game board
-
+    /**
+     * @param  startBoard
+     * This method creates 3x3 game board
+     * @author Emir Esad Şahin
+     */
     private static void startBoard(){ //creating game board
         for (int i=0;i<3;i++){ //rows
             for (int j=0;j<3;j++){ // cols
@@ -1024,7 +1032,11 @@ public class Main {
             }
         }
     }
-
+    /**
+     * @param  printBoard
+     * This method prints the game board
+     * @author Emir Esad Şahin
+     */
     private static void printBoard(){ // prints the board
         System.out.println("Board: "); // adds next line after the print operation
         for(int i=0;i<3;i++){ // basic array print operation
@@ -1040,6 +1052,8 @@ public class Main {
      * @param player
      * @author Emir Esad Şahin
      * @author Sezai Araplarlı
+     * This method can give a chance for player turn
+     * Player can select row and column
      */
     private static void playerTurn(char player){ // player turn
         int row, col;
@@ -1063,7 +1077,11 @@ public class Main {
         }
     
     }
-
+    /**
+     * @param  whoWins
+     * This method checks which player win the game
+     * @author Emir Esad Şahin
+     */
     private static boolean whoWins(char player) {
         // check rows of board
         for (int i = 0; i < 3; i++) {
@@ -1089,7 +1107,7 @@ public class Main {
         }
 
         return false;  // If there is no win situation, it returns false
-        
+        //eeş
     }
 
     // TERMINAL CLEANER METHOD
