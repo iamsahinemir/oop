@@ -411,7 +411,11 @@ public class Main {
                 }
                 	
             }
-    
+    /**
+     * @param tictactoe game
+     * If you click 4, you can access tictactoe game
+     * @author Emir Esad Şahin
+     */
             else if (operation == 4){
                 clearTerminal();
                 startBoard();
