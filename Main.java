@@ -361,6 +361,11 @@ public class Main {
                 }
     
             }
+            /**
+             * @param encryption and decoding 
+             * If you click 3 and than you can access encryption and decoding
+             * @author Tunahan Tuze
+             */
     
             else if (operation == 3){
                 String message;
@@ -379,30 +384,30 @@ public class Main {
                     //(selection.charAt(0) != '+' && selection.charAt(0) != '-' && selection.charAt(0) != '*')
                     
                     if(selection != '+' && selection != '-' && selection != '*'){
-                        System.out.println("You have entered an incorrect entry and are being redirected back to the main menu.");
+                        System.out.println("You have entered an incorrect entry and are being redirected back to the main menu."); //If the entered value is not one of the required ones, the program stops running.
                     }
                     else{
                         boolean cond = true;
                         while(cond){
                             
                             if(selection == '*'){
-                                cond=false;
-                                over = false;
+                                cond=false; //system stops working 
+                                over = false; //system stops working
                                 clearTerminal();
                             }
                             else if(selection == '+'){
-                                message = getMessage(); // Mesajı al
-                                number = enc_number();  // Şifreleme numarasını al
-                                String enc_message_out = text_to_enc(message, number); // Şifreleme işlemi
-                                print_enc_message(number,"Encrypted Message: " + enc_message_out); // Şifrelenmiş mesajı yazdır
-                                cond=false;
+                                message = getMessage(); // Gets the message
+                                number = enc_number();  // Gets the number to be encrypted
+                                String enc_message_out = text_to_enc(message, number); // encrypted by number
+                                print_enc_message(number,"Encrypted Message: " + enc_message_out); // print the encryted message
+                                cond=false; // stop 
                             }
                             else if(selection == '-'){
-                                message=get_en_Message();
-                                number = enc_number();
-                                String enc_message_out =text_to_dec(message, number);
-                                print_enc_message(number, "Decrypted message: "+ enc_message_out);
-                                cond=false;
+                                message=get_en_Message(); // Gets the encryted message
+                                number = enc_number(); // Get the number to solve message
+                                String enc_message_out =text_to_dec(message, number); // the orginal message
+                                print_enc_message(number, "Decrypted message: "+ enc_message_out); // print the orginal message
+                                cond=false; // stop 
                             }
                         }
             
@@ -947,7 +952,11 @@ public class Main {
 
 
     // METHODS OF TEXT ENCRYPTION - DECRYPTION
-
+    /**
+     * @param Normal_Message
+     * User writes the message to be encrypted
+     * @author Tunahan Tuze
+     */
     public static String getMessage(){
 
 		System.out.print("Please, enter your message to be encrypted: ");
@@ -955,7 +964,11 @@ public class Main {
 		System.out.println("Your message before encrypted: " +message);
 		return message;
 	}
-
+    /**
+     * @param Enc_Message
+     * User writes the encryted message to be decoding
+     * @author Tunahan Tuze
+     */
 	public static String get_en_Message(){
 		
 		System.out.print("Please, enter your encryted message to be decryption: ");
@@ -965,8 +978,8 @@ public class Main {
 	}
 
     /**
-     * 
-     * @return
+     * @param Number
+     * User selects a number between 26 and -26
      * @author Tunahan Tuze
      * @author Sezai Araplarlı
      */
@@ -978,7 +991,7 @@ public class Main {
 
         while (true) {
             number = scanner.nextInt();
-            if (number > 26 || number < -26) {
+            if (number > 26 || number < -26) { // if the number not in range, ıt will stop 
                 System.out.println("You entered the wrong range and you are returned to the main menu.");
                 return 0; 
             } else {
@@ -987,28 +1000,47 @@ public class Main {
         }
         return number; 
 	}
-
+    /**
+     * @param Text_to_Encription 
+     * @param message
+     * @param number
+     * The message is encrypted. If there are no letters left due to the encryption number of the message,
+     * it continues from the end of the alphabet.
+     * @author Tunahan Tuze 
+     */
 	public static String text_to_enc(String message,int number)
 	{
 		String enc_message="";
 
 		for(int i =0; i<message.length(); i++){
 			char ch = message.charAt(i);
-			if((message.charAt(i)>=65) && (message.charAt(i)<=90)){
-				ch = (char) (((ch - 65 + number) % 26 + 26) % 26 + 65);
+			if((message.charAt(i)>=65) && (message.charAt(i)<=90)){ 
+				ch = (char) (((ch - 65 + number) % 26 + 26) % 26 + 65); //The part that continues from the end 
 			}
 			else if((message.charAt(i)>=97) && (message.charAt(i)<=122)){
-				ch = (char) (((ch - 97 + number) % 26 + 26) % 26 + 97);
+				ch = (char) (((ch - 97 + number) % 26 + 26) % 26 + 97); //The part that continues from the end 
             	}
 				enc_message+=ch;
 			}
 			return enc_message;
 	}
-
+    /**
+     * @param Text_to_Decoding
+     * @param message
+     * @param number
+     * The part that sends the parts necessary to decode the code to another method
+     * @author Tunahan Tuze
+     */
 	public static String text_to_dec(String message, int number) {
 		return text_to_enc(message, -number); 
 	}
-
+    /**
+     * @param Print
+     * Print the message
+     * @param number
+     * @param enc_message_out
+     * @author Tunahan Tuze 
+     */
 	public static void print_enc_message(int number,String enc_message_out){
 		if (number > 26 || number < -26){
 		}
