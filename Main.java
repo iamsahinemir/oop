@@ -455,7 +455,7 @@ public class Main {
     /**
      * @param tictactoe game
      * If you click 4, you can access tictactoe game
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
             else if (operation == 4){
                 clearTerminal();
@@ -1269,13 +1269,13 @@ public class Main {
     /**
      * @param board 
      * This method creates array for 3x3 game board
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     private static char[][] board=new char[3][3]; // 3x3 game board
     /**
      * @param  startBoard
      * This method creates 3x3 game board
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     private static void startBoard(){ //creating game board
         for (int i=0;i<3;i++){ //rows
@@ -1287,7 +1287,7 @@ public class Main {
     /**
      * @param  printBoard
      * This method prints the game board
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     private static void printBoard(){ // prints the board
         System.out.println("Board: "); // adds next line after the print operation
@@ -1302,7 +1302,7 @@ public class Main {
     /**
      * 
      * @param player
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      * @author Sezai Araplarlı
      * This method can give a chance for player turn
      * Player can select row and column
@@ -1332,7 +1332,7 @@ public class Main {
     /**
      * @param  whoWins
      * This method checks which player win the game
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     private static boolean whoWins(char player) {
         // check rows of board
