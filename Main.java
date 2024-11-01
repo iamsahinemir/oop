@@ -177,7 +177,9 @@ public class Main {
                         System.out.println("3. Median");
                         System.out.println("4. Mode");
                         System.out.println("5. Standart Deviation");
-                        System.out.print("Make your choice (1-5): ");
+                        System.out.println("6. Harmonic Mean: ");
+                        System.out.println("7. Geometric Mean: ");
+                        System.out.print("Make your choice (1-7): ");
                         int choice = scanner.nextInt();
         
                       
@@ -196,10 +198,14 @@ public class Main {
                                 break;
                             case 5:
                                 System.out.println("Standard Deviation: " + calculateStandardDeviation(array));
+                            case 6:
+                            	System.out.println("Harmonic Mean: " + calculateHarmonicMean(array,array.length - 1));
+                            case 7:
+                        		System.out.println("Geometric Mean: " + calculateGeometricMean(array,array.length - 1));
                                 break;
                             default:
                                 System.out.println("Invalid chioce!");
-                                continue; 
+                                continue;
                         }
         
                         
@@ -584,6 +590,8 @@ public class Main {
         return maxValue;
     }
 
+    
+    
     /**
      * Calculates the standard deviation of the elements in the array.
      *
@@ -600,9 +608,48 @@ public class Main {
         }
         return Math.sqrt(sum / array.length);
     }
+
+    /**
+     * Calculates the Harmonic Mean of the elements in the array using recursion.
+     *
+     * @param array The array of integers
+     * @param index the recursion
+     * @return Harmonic Mean
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */       
+    public static double calculateHarmonicMean(int[] array, int index) { 
+    	if (index <0) return 0.0;
+    	return array.length / (1.0 / array [index] + calculateHarmonicMean(array, index - 1) / array.length);
+    }
+    
+    /**
+     * Calculates the geometric mean of the elements in the array using recursion.
+     *
+     * @param array The array of integers
+     * @param index in the recursion
+     * @return Geometric mean
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */     
+     
+    public static double calculateGeometricMean(int[] array, int index) { 
+    	if (index < 0){
+            return 1.0;
+        }  
+    	return Math.pow(array[index] * calculateGeometricMean(array, index - 1), 1.0 / array.length); 
+    } 
     
 
-    // METHODS OF MATRIX OPERATIONS 
+  
+        
+        
+    
+
+    // METHODS OF MATRIX OPERATIONS
+
+
+
     /**
      * Prompts the user to enter the values of two matrices and returns them in a list.
      *
@@ -623,7 +670,7 @@ public class Main {
         int matrix2Columns = scanner.nextInt();
 
      // Validation of matrix compatibility for operations
-        if (matrix1Columns != matrix2Rows) {
+        if (matrix1Rows != matrix2Rows || matrix1Columns != matrix2Columns) {
             System.out.println(matrixMatchError);
             return null;
         } else if ((matrix1Rows > 5 || matrix1Rows < 2) && (matrix1Columns > 5 || matrix1Columns < 2)) {
@@ -675,6 +722,7 @@ public class Main {
         int matrix1Rows = scanner.nextInt();
         System.out.print(inputMatrixColumn);
         int matrix1Columns = scanner.nextInt();
+        
 
 
 
@@ -713,8 +761,11 @@ public class Main {
 
         System.out.print(inputMatrixRow);
         int matrix1Rows = scanner.nextInt();
+        scanner.nextLine();
         System.out.print(inputMatrixColumn);
         int matrix1Columns = scanner.nextInt();
+
+        
 
 
 
@@ -728,7 +779,7 @@ public class Main {
 
         } else {
             double[][] matrix1 = new double[matrix1Rows][matrix1Columns];
-            System.out.println(inputMatrixRow);
+            System.out.print("Matrix : ");
             for (int i = 0; i < matrix1Rows; i++) {
                 for (int j = 0; j < matrix1Columns; j++) {
                     matrix1[i][j] = scanner.nextInt();
