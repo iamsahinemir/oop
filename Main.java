@@ -1179,6 +1179,7 @@ public class Main {
     // METHODS OF TEXT ENCRYPTION - DECRYPTION
     /**
      * User writes the message to be encrypted
+     * @return returns the first message that user has entered
      * @author Tunahan Tuze
      */
     public static String getMessage(){
@@ -1190,6 +1191,7 @@ public class Main {
 	}
     /**
      * User writes the encryted message to be decoding
+     * @return returns the message
      * @author Tunahan Tuze
      */
 	public static String get_en_Message(){
@@ -1202,6 +1204,7 @@ public class Main {
 
     /**
      * User selects a number between 26 and -26
+     * @return returns the number that user has selected
      * @author Tunahan Tuze
      * @author Sezai Araplarlı
      */
@@ -1225,6 +1228,7 @@ public class Main {
     /**
      * @param message  Holds the message received from the user
      * @param number  holds the number received from the user
+     * @return returns encrypted massage
      * The message is encrypted. If there are no letters left due to the encryption number of the message,
      * it continues from the end of the alphabet.
      * @author Tunahan Tuze 
@@ -1248,6 +1252,7 @@ public class Main {
     /**
      * @param message Holds the message received from the user
      * @param number keeps count from user
+     * @return returns decrypted message
      * The part that sends the parts necessary to decode the code to another method
      * @author Tunahan Tuze
      */
