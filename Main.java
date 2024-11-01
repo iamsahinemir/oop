@@ -1169,7 +1169,6 @@ public class Main {
 
     // METHODS OF TEXT ENCRYPTION - DECRYPTION
     /**
-     * @param Normal_Message
      * User writes the message to be encrypted
      * @author Tunahan Tuze
      */
@@ -1181,7 +1180,6 @@ public class Main {
 		return message;
 	}
     /**
-     * @param Enc_Message
      * User writes the encryted message to be decoding
      * @author Tunahan Tuze
      */
@@ -1194,7 +1192,6 @@ public class Main {
 	}
 
     /**
-     * @param Number
      * User selects a number between 26 and -26
      * @author Tunahan Tuze
      * @author Sezai Araplarlı
@@ -1217,9 +1214,8 @@ public class Main {
         return number; 
 	}
     /**
-     * @param Text_to_Encription 
-     * @param message
-     * @param number
+     * @param message  Holds the message received from the user
+     * @param number  holds the number received from the user
      * The message is encrypted. If there are no letters left due to the encryption number of the message,
      * it continues from the end of the alphabet.
      * @author Tunahan Tuze 
@@ -1241,9 +1237,8 @@ public class Main {
 			return enc_message;
 	}
     /**
-     * @param Text_to_Decoding
-     * @param message
-     * @param number
+     * @param message Holds the message received from the user
+     * @param number keeps count from user
      * The part that sends the parts necessary to decode the code to another method
      * @author Tunahan Tuze
      */
@@ -1251,10 +1246,9 @@ public class Main {
 		return text_to_enc(message, -number); 
 	}
     /**
-     * @param Print
      * Print the message
-     * @param number
-     * @param enc_message_out
+     * @param number Holds the number received from the user
+     * @param enc_message_out print the message
      * @author Tunahan Tuze 
      */
 	public static void print_enc_message(int number,String enc_message_out){
