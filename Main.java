@@ -128,7 +128,7 @@ public class Main {
             System.out.println(menuBorder);
             System.out.println("1 - Statistical Information about an array\n"
                              + "2 - Matrix Operations\n"
-                             + "3 - Text Encryption/Decryption\n" 
+                             + "3 - Text Encryption/Decryption\n"
                              + "4 - Tic Tac Toe Game\n"
                              + "5 - Terminate");
             System.out.println(menuBorder);
@@ -253,6 +253,7 @@ public class Main {
                     int choice = scanner.nextInt();
     
                     if (choice == 11) {
+                        clearTerminal();
                         System.out.println("Exiting the program.");
                         break;
                     }
@@ -455,7 +456,7 @@ public class Main {
     /**
      * @param tictactoe game
      * If you click 4, you can access tictactoe game
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
             else if (operation == 4){
                 clearTerminal();
@@ -532,6 +533,10 @@ public class Main {
      * @author Dilvin Aydin
      */
     public static double calculateMean(int[] array) {
+
+        // geometric - harmonic mean falan da eklenecek
+        // ikisinden birinde eksili değerde
+
         return (double) calculateSum(array) / array.length;
     }
 
@@ -562,6 +567,9 @@ public class Main {
      * @author Dilvin Aydin
      */
     public static int calculateMode(int[] array) {
+
+        //hepsi farklı değerler sahip arrayler için farklı bir mode mesajı
+
         int maxValue = 0, maxCount = 0;
         for (int i = 0; i < array.length; ++i) {
             int count = 0;
@@ -724,6 +732,7 @@ public class Main {
             for (int i = 0; i < matrix1Rows; i++) {
                 for (int j = 0; j < matrix1Columns; j++) {
                     matrix1[i][j] = scanner.nextInt();
+                    
                 }
             }
 
@@ -756,7 +765,7 @@ public class Main {
      */
     private static void matrixAddition(int matrix1Rows, int matrix1Columns, int matrix2Rows, int matrix2Columns, double[][] matrix1, double[][] matrix2) {
 
-
+        //sonuç olarak büyük olan matrix gösterilsin
 
         double[][] result = new double[matrix1Rows][matrix1Columns];
         for (int i = 0; i < matrix1Rows; i++) {
@@ -1261,15 +1270,13 @@ public class Main {
 
     // METHODS OF TIC TAC TOE GAME
     /**
-     * @param board 
-     * This method creates array for 3x3 game board
-     * @author Emir Esad Şahin
+     * @param board This method creates array for 3x3 game board
+     * @author Emir Esad Sahin
      */
     private static char[][] board=new char[3][3]; // 3x3 game board
     /**
-     * @param  startBoard
-     * This method creates 3x3 game board
-     * @author Emir Esad Şahin
+     * @param  startBoard This method creates 3x3 game board
+     * @author Emir Esad Sahin
      */
     private static void startBoard(){ //creating game board
         for (int i=0;i<3;i++){ //rows
@@ -1279,9 +1286,8 @@ public class Main {
         }
     }
     /**
-     * @param  printBoard
-     * This method prints the game board
-     * @author Emir Esad Şahin
+     * @param  printBoard This method prints the game board
+     * @author Emir Esad Sahin
      */
     private static void printBoard(){ // prints the board
         System.out.println("Board: "); // adds next line after the print operation
@@ -1295,10 +1301,9 @@ public class Main {
     
     /**
      * 
-     * @param player
-     * @author Emir Esad Şahin
-     * @author Sezai Araplarlı
-     * This method can give a chance for player turn
+     * @param player This method can give a chance for player turn
+     * @author Emir Esad Sahin
+     * @author Sezai Araplarlı 
      * Player can select row and column
      */
     private static void playerTurn(char player){ // player turn
@@ -1324,9 +1329,8 @@ public class Main {
     
     }
     /**
-     * @param  whoWins
-     * This method checks which player win the game
-     * @author Emir Esad Şahin
+     * @param  whoWins This method checks which player win the game
+     * @author Emir Esad Sahin
      */
     private static boolean whoWins(char player) {
         // check rows of board
