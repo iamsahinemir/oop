@@ -1267,14 +1267,12 @@ public class Main {
 
     // METHODS OF TIC TAC TOE GAME
     /**
-     * @param board 
-     * This method creates array for 3x3 game board
+     * @param board This method creates array for 3x3 game board
      * @author Emir Esad Sahin
      */
     private static char[][] board=new char[3][3]; // 3x3 game board
     /**
-     * @param  startBoard
-     * This method creates 3x3 game board
+     * @param  startBoard This method creates 3x3 game board
      * @author Emir Esad Sahin
      */
     private static void startBoard(){ //creating game board
@@ -1285,8 +1283,7 @@ public class Main {
         }
     }
     /**
-     * @param  printBoard
-     * This method prints the game board
+     * @param  printBoard This method prints the game board
      * @author Emir Esad Sahin
      */
     private static void printBoard(){ // prints the board
@@ -1301,10 +1298,9 @@ public class Main {
     
     /**
      * 
-     * @param player
+     * @param player This method can give a chance for player turn
      * @author Emir Esad Sahin
-     * @author Sezai Araplarlı
-     * This method can give a chance for player turn
+     * @author Sezai Araplarlı 
      * Player can select row and column
      */
     private static void playerTurn(char player){ // player turn
@@ -1330,8 +1326,7 @@ public class Main {
     
     }
     /**
-     * @param  whoWins
-     * This method checks which player win the game
+     * @param  whoWins This method checks which player win the game
      * @author Emir Esad Sahin
      */
     private static boolean whoWins(char player) {
