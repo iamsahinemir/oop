@@ -128,7 +128,7 @@ public class Main {
             System.out.println(menuBorder);
             System.out.println("1 - Statistical Information about an array\n"
                              + "2 - Matrix Operations\n"
-                             + "3 - Text Encryption/Decryption\n" 
+                             + "3 - Text Encryption/Decryption\n"
                              + "4 - Tic Tac Toe Game\n"
                              + "5 - Terminate");
             System.out.println(menuBorder);
@@ -253,6 +253,7 @@ public class Main {
                     int choice = scanner.nextInt();
     
                     if (choice == 11) {
+                        clearTerminal();
                         System.out.println("Exiting the program.");
                         break;
                     }
@@ -532,6 +533,10 @@ public class Main {
      * @author Dilvin Aydin
      */
     public static double calculateMean(int[] array) {
+
+        // geometric - harmonic mean falan da eklenecek
+        // ikisinden birinde eksili değerde
+
         return (double) calculateSum(array) / array.length;
     }
 
@@ -562,6 +567,9 @@ public class Main {
      * @author Dilvin Aydin
      */
     public static int calculateMode(int[] array) {
+
+        //hepsi farklı değerler sahip arrayler için farklı bir mode mesajı
+
         int maxValue = 0, maxCount = 0;
         for (int i = 0; i < array.length; ++i) {
             int count = 0;
@@ -724,6 +732,7 @@ public class Main {
             for (int i = 0; i < matrix1Rows; i++) {
                 for (int j = 0; j < matrix1Columns; j++) {
                     matrix1[i][j] = scanner.nextInt();
+                    
                 }
             }
 
@@ -756,7 +765,7 @@ public class Main {
      */
     private static void matrixAddition(int matrix1Rows, int matrix1Columns, int matrix2Rows, int matrix2Columns, double[][] matrix1, double[][] matrix2) {
 
-
+        //sonuç olarak büyük olan matrix gösterilsin
 
         double[][] result = new double[matrix1Rows][matrix1Columns];
         for (int i = 0; i < matrix1Rows; i++) {
@@ -1169,7 +1178,7 @@ public class Main {
 
     // METHODS OF TEXT ENCRYPTION - DECRYPTION
     /**
-     * @param Normal_Message
+     * 
      * User writes the message to be encrypted
      * @author Tunahan Tuze
      */
@@ -1181,7 +1190,7 @@ public class Main {
 		return message;
 	}
     /**
-     * @param Enc_Message
+     * 
      * User writes the encryted message to be decoding
      * @author Tunahan Tuze
      */
@@ -1194,7 +1203,7 @@ public class Main {
 	}
 
     /**
-     * @param Number
+     * 
      * User selects a number between 26 and -26
      * @author Tunahan Tuze
      * @author Sezai Araplarlı
@@ -1217,9 +1226,9 @@ public class Main {
         return number; 
 	}
     /**
-     * @param Text_to_Encription 
+     * 
      * @param message
-     * @param number
+     * 
      * The message is encrypted. If there are no letters left due to the encryption number of the message,
      * it continues from the end of the alphabet.
      * @author Tunahan Tuze 
@@ -1241,8 +1250,8 @@ public class Main {
 			return enc_message;
 	}
     /**
-     * @param Text_to_Decoding
-     * @param message
+     * 
+     * @param message 
      * @param number
      * The part that sends the parts necessary to decode the code to another method
      * @author Tunahan Tuze
@@ -1251,10 +1260,10 @@ public class Main {
 		return text_to_enc(message, -number); 
 	}
     /**
-     * @param Print
+     * 
      * Print the message
-     * @param number
-     * @param enc_message_out
+     * @param number 
+     * @param enc_message_out 
      * @author Tunahan Tuze 
      */
 	public static void print_enc_message(int number,String enc_message_out){
