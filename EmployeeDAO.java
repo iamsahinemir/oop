@@ -16,6 +16,8 @@ public class EmployeeDAO {
                 System.out.println("Name: " + rs.getString("name"));
                 System.out.println("Surname: " + rs.getString("surname"));
                 System.out.println("Role: " + rs.getString("role"));
+                System.out.println("Phone Number: " + rs.getString("phone_number"));
+                System.out.println("Email: " + rs.getString("email"));
             } else {
                 System.out.println("No employee found with username: " + username);
             }
@@ -24,7 +26,7 @@ public class EmployeeDAO {
         }
     }
     public void updateProfile(String username, String phoneNo, String email) {
-        String query = "UPDATE employees SET phone_no = ?, email = ? WHERE username = ?";
+        String query = "UPDATE employees SET phone_number = ?, email = ? WHERE username = ?";
         try (Connection conn = DatabaseFacade.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
     
@@ -38,24 +40,7 @@ public class EmployeeDAO {
             e.printStackTrace();
         }
     }
-    public void addEmployee(String username, String password, String role, String name, String surname) {
-        String query = "INSERT INTO employees (username, password, role, name, surname) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseFacade.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-    
-            stmt.setString(1, username);
-            stmt.setString(2, password);
-            stmt.setString(3, role);
-            stmt.setString(4, name);
-            stmt.setString(5, surname);
-    
-            stmt.executeUpdate();
-            System.out.println("Employee added successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    public void addEmployee(String username, String password, String role, String name, String surname) {
+    public void addEmployee(String username, String password, String role, String name, String surname) { // telefon numarası ve mail eklenecek
         String query = "INSERT INTO employees (username, password, role, name, surname) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseFacade.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
