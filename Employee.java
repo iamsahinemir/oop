@@ -1,5 +1,6 @@
+import java.time.LocalDate;
 
-public class Employee {
+public abstract class Employee {
 
     protected int employeeId;      //şimdilik kullanılmıyor
     protected String username;
@@ -9,12 +10,12 @@ public class Employee {
     protected String surname;
     protected String phoneNumber;
     //date'ler için LocalDate gibi özel veri tipleri işimizi kolaylaştırabilir
-    //dateOfBirth
-    //dateOfStart
+    protected String dateOfBirth;
+    protected String dateOfStart;
     protected String email;
    
     public Employee(int employeeId, String username, String password, String role,
-                    String name, String surname, String phoneNumber, String email){
+                    String name, String surname, String phoneNumber, String dateOfBirth, String dateOfStart, String email){
        
        this.employeeId = employeeId;
        this.username = username;
@@ -23,6 +24,8 @@ public class Employee {
        this.name = name;
        this.surname = surname;
        this.phoneNumber = phoneNumber;
+       this.dateOfBirth = dateOfBirth;
+       this.dateOfStart = dateOfStart;
        this.email = email;
 
     }
@@ -58,7 +61,25 @@ public class Employee {
     public void setPhoneNumber(String phoneNumber){
         this.phoneNumber = phoneNumber;
     }
+    
+        //DATE OF BIRTH GETTER AND SETTER
+    public String getDateOfBirth(){
+        return dateOfBirth;
+    }
+    
+    public void setDateOfBirth(String dateOfBirth){
+        this.dateOfBirth = dateOfBirth;
+    }    
 
+
+        //DATE OF START GETTER AND SETTER
+    public String getDateOfStart(){
+        return dateOfStart;
+    }
+
+    public void setDateOfStart(String dateOfStart){
+        this.dateOfStart = dateOfStart;
+    }   
 
         //EMPLOYEE NAME GETTER AND SETTER
     public String getName(){
@@ -110,34 +131,9 @@ public class Employee {
     }
 
 
-    public void displayProfile() {
-        System.out.println("Password: " + password);
-        System.out.println("Phone No: " + phoneNumber);
-        System.out.println("Email: " + email);
-    }
+    public abstract void displayProfile();
    
-    public void displayNonProfile() {
-        System.out.println("Name: " + name + " " + surname);
-        System.out.println("Username: " + username);
-        System.out.println("Role: " + role);
-        //System.out.println("Date of Birth: " + dateOfBirth);
-        //System.out.println("Date of Start: " + dateOfStart);
-    }
-
-
-   public static void main(String[] args) {
-       
-        Employee employee1 = new Employee(123456, "sezowastaken", "951753",
-        "Technician", "Sezai", "Araplarlı",
-        "+90 533 791 83 37", "sezowastaken@hotmail.com");
-
-        employee1.displayProfile();
-        System.out.println("------------------------------------");
-        System.out.println("employee1 password --> " + employee1.getRole());
-        employee1.setEmployeeId(313131);
-        System.out.println("employee1 password after change --> " + employee1.getEmployeeId());
-        
-   }
+    public abstract void displayNonProfile();
    
 
 }

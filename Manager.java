@@ -1,15 +1,19 @@
 //import java.time.LocalDate;
 
+import java.time.LocalDate;
+import java.util.Scanner;
 
-public class Manager extends Employee {
+public class Manager extends RegularEmployee {
 
     
     public Manager(int employeeId, String username, String password,
-                  String name, String surname, String phoneNumber, String email){
+                  String name, String surname, String phoneNumber, String dateOfBirth, String dateOfStart, String email){
 
-        super(employeeId, username, password, "Manager", name, surname, phoneNumber, email);
+        super(employeeId, username, password, "Manager", name, surname, phoneNumber, dateOfBirth, dateOfStart, email);
         
     }
+
+    Scanner input = new Scanner(System.in);
 
 
     
@@ -23,6 +27,11 @@ public class Manager extends Employee {
 
     // Tüm çalışanları listeleme
     public void displayAllEmployees() {
+        
+        EmployeeDAO dao = new EmployeeDAO();
+        System.out.print("Enter username: ");
+        String username = input.nextLine();
+        dao.displayEmployee(username);
         
     }
 
@@ -38,6 +47,19 @@ public class Manager extends Employee {
 
     // Çalışan Ekleme
     public void hireEmployee() {
+        
+        EmployeeDAO dao = new EmployeeDAO();
+        System.out.print("Enter username: ");
+        username = input.nextLine();
+        System.out.print("Enter password: ");
+        String password = input.nextLine();
+        System.out.print("Enter role (manager/engineer/technician/intern): ");
+        String role = input.nextLine();
+        System.out.print("Enter name: ");
+        String name = input.nextLine();
+        System.out.print("Enter surname: ");
+        String surname = input.nextLine();
+        dao.addEmployee(username, password, role, name, surname);
 
     }
 
@@ -51,12 +73,15 @@ public class Manager extends Employee {
         
     }
 
-    public static void main(String[] args) {
-        
-        Manager manager1 = new Manager(123456, "sezowastaken", "951753"
-        , "Sezai", "Araplarlı",
-        "+90 533 791 83 37", "sezowastaken@hotmail.com");
+    
 
+    public static void main(String[] args) {
+
+        DatabaseFacade dbFacade = new DatabaseFacade();
+        
+        RegularEmployee employee = dbFacade.getRegularEmployeeByUsername("iamsahinemir");
+        RegularEmployee employee2 = dbFacade.getRegularEmployeeByUsername("sezowastaken");
+        /*
         Employee employee1 = new Employee(123456, "sezowastaken", "951753",
         "Technician", "Sezai", "Araplarlı",
         "+90 533 791 83 37", "sezowastaken@hotmail.com");
@@ -71,8 +96,16 @@ public class Manager extends Employee {
         employee1.displayNonProfile();
         System.out.println("------------------------------------");
         manager1.displayNonProfile();
+
+        */
+
+        //manager1.hireEmployee();
+        
+        employee.displayProfile();
+        employee2.displayProfile();
+
     }
 
     
-
+    
 }
