@@ -149,6 +149,7 @@ public class Algorithms {
                 int[] heap_Arrayy = generate_heap_Array(randomArray,userInput);
                 int[] insertion_Array = generate_insertion_Array(randomArray,userInput);
                 int[] shell_Sort = shellSort(shell_Array);
+                System.out.println();
                 for (int number: shell_Sort) {
                     
                     System.out.println(number + " ");
@@ -178,8 +179,8 @@ public class Algorithms {
                 // System.out.println(); 
                 break;
             }
+            input.close();
         }
-
 
     }
 }
