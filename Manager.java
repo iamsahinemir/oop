@@ -18,7 +18,7 @@ public class Manager extends Employee {
         setEmail(updatedEmail);
         setPassword(updatedPassword);
         setPhoneNumber(updatedPhoneNumber);
-    }  
+    }
        
 
     // Tüm çalışanları listeleme
@@ -57,10 +57,19 @@ public class Manager extends Employee {
         , "Sezai", "Araplarlı",
         "+90 533 791 83 37", "sezowastaken@hotmail.com");
 
-        manager1.displayProfile();
+        Employee employee1 = new Employee(123456, "sezowastaken", "951753",
+        "Technician", "Sezai", "Araplarlı",
+        "+90 533 791 83 37", "sezowastaken@hotmail.com");
+
+        //manager1.displayProfile();
+        
+        //manager1.updateOwnProfile("sezowastaken@stu.khas.edu.tr", "123456", "+90 531 684 90 90");
+
+        employee1.displayNonProfile();
         System.out.println("------------------------------------");
-        manager1.updateOwnProfile("sezowastaken@stu.khas.edu.tr", "123456", "+90 531 684 90 90");
-        manager1.displayProfile();
+        employee1.setRole("Engineer");
+        employee1.displayNonProfile();
+        System.out.println("------------------------------------");
         manager1.displayNonProfile();
     }
 
