@@ -26,6 +26,7 @@ public class Algorithms {
                 System.out.println(blue+ "Invalid input!!! "+ yellow + "Please enter a valid number: "+ reset);
                 input.next();
             }
+            input.close();
         }
     }
     //alınan inputtan random array üretme
@@ -86,37 +87,50 @@ public class Algorithms {
 
     public static int[] shellSort(int[] shellarray) {
         int n = shellarray.length;
+
     
-        for (int gap = n / 2; gap > 0; gap /= 2) { // Gap değerini azalt
-            for (int i = gap; i < n; i++) { // Gap kadar aralıklı elemanları seç
+        for (int gap = n / 2; gap > 0; gap /= 2) { 
+            for (int i = gap; i < n; i++) { 
                 int temp = shellarray[i];
                 int j = i;
     
-                // Gap aralığında sıralama
+                
                 while (j >= gap && shellarray[j - gap] > temp) {
                     shellarray[j] = shellarray[j - gap];
                     j -= gap;
                 }
     
-                // Geçici elemanı doğru yerine koy
+                
                 shellarray[j] = temp;
             }
         }
     
-        return shellarray; // Sıralanmış diziyi döndür
+        return shellarray; 
     }
     
     
     
-    public static void heapSort(int[] array) {
-        // Heap sort algoritması buraya yazılır
-       
+    public static void heapSort(int[] heaparray) {
+        int n = heaparray.length;  
     }
     
-    public static void insertionSort(int[] array) {
-        // Insertion sort algoritması buraya yazılır
-        
+    public static int[] insertionSort(int[] insertionArray) {
+        int n = insertionArray.length;
+
+        for (int i = 1; i < n; ++i) {
+            int key = insertionArray[i];
+            int j = i - 1;
+
+            
+            while (j >= 0 && insertionArray[j] > key) {
+                insertionArray[j + 1] = insertionArray[j];
+                j = j - 1;
+            }
+            insertionArray[j + 1] = key;
+        }
+        return insertionArray;
     }
+
 
 
 
@@ -146,15 +160,22 @@ public class Algorithms {
                 int[] randomArray = generate_Random_Array(userInput);
                 int[] radix_Array = generate_radix_Array(randomArray,userInput);
                 int[] shell_Array = generate_shell_Array(randomArray,userInput);
-                int[] heap_Arrayy = generate_heap_Array(randomArray,userInput);
+                int[] heap_Array = generate_heap_Array(randomArray,userInput);
                 int[] insertion_Array = generate_insertion_Array(randomArray,userInput);
                 int[] shell_Sort = shellSort(shell_Array);
+                //int[] heap_Sort = heapSort(heap_Array);
+                int[] insertion_Sort = insertionSort(insertion_Array);
+                
                 System.out.println();
-                for (int number: shell_Sort) {
+            
+                // for (int number: shell_Sort) {
                     
+                //     System.out.println(number + " ");
+                // }
+                for(int number: insertion_Sort){
+
                     System.out.println(number + " ");
                 }
-
                 //test için array yazdırma
                 // System.out.println(blue + "Generated Random Array:" + reset);
                 // for (int number : randomArray) {
