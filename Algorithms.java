@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,17 +29,94 @@ public class Algorithms {
         }
     }
     //alınan inputtan random array üretme
-    public static int[] generateRandomArray(int size_of_array) { 
+    public static int[] generate_Random_Array(int size_of_array) { 
         Random random = new Random();
         int[] randomArray = new int[size_of_array];
 
         for (int i = 0; i < size_of_array; i++) {
-            randomArray[i] = random.nextInt(20001) - 10000; // -10,000 ile 10,000 arasında
+            randomArray[i] = -10000 + random.nextInt(20001); // -10,000 ile 10,000 arasında
         }
 
         return randomArray;
+        
     }
 
+    public static int[] generate_radix_Array(int[] randomArray, int size_of_array){
+
+        int[] radix_Array = new int [size_of_array];
+        for(int i = 0; i<size_of_array;i++){
+            radix_Array[i] = randomArray[i];
+
+        }
+        return radix_Array;
+    }
+
+    public static int[] generate_shell_Array(int[] randomArray, int size_of_array){
+
+        int[] shell_Array = new int [size_of_array];
+        for(int i = 0; i<size_of_array; i++){
+            shell_Array[i] = randomArray[i];
+        }
+        return shell_Array;
+    }   
+        
+    public static int[] generate_heap_Array(int []randomArray, int size_of_array){
+
+        int[] heap_Array = new int [size_of_array];
+        for(int i = 0; i<size_of_array; i++){
+            heap_Array[i] = randomArray[i];
+            
+        }
+        return heap_Array;
+    }
+    
+    public static int[] generate_insertion_Array(int[] randomArray, int size_of_array){
+
+        int[] insertion_Array = new int [size_of_array];
+        for(int i = 0 ; i<size_of_array; i++){
+            insertion_Array[i] = randomArray[i];
+        }
+        
+        return insertion_Array;
+    }
+    
+    public static void radixSort(int[] array) {
+    // Radix sort algoritması buraya yazılır
+    }   
+
+    public static int[] shellSort(int[] shellarray) {
+        int n = shellarray.length;
+    
+        for (int gap = n / 2; gap > 0; gap /= 2) { // Gap değerini azalt
+            for (int i = gap; i < n; i++) { // Gap kadar aralıklı elemanları seç
+                int temp = shellarray[i];
+                int j = i;
+    
+                // Gap aralığında sıralama
+                while (j >= gap && shellarray[j - gap] > temp) {
+                    shellarray[j] = shellarray[j - gap];
+                    j -= gap;
+                }
+    
+                // Geçici elemanı doğru yerine koy
+                shellarray[j] = temp;
+            }
+        }
+    
+        return shellarray; // Sıralanmış diziyi döndür
+    }
+    
+    
+    
+    public static void heapSort(int[] array) {
+        // Heap sort algoritması buraya yazılır
+       
+    }
+    
+    public static void insertionSort(int[] array) {
+        // Insertion sort algoritması buraya yazılır
+        
+    }
 
 
 
@@ -48,20 +126,60 @@ public class Algorithms {
         String reset = "\033[0m";
         String blue = "\033[34m";
         String yellow = "\033[33m";
-
         // Menü gösterimi
-        System.out.println(yellow + "====== MANAGER MENU ======" + reset);
-        System.out.println(blue + "1. Run " + yellow + "Sorting " + blue + "Algorithms" + reset);
-        System.out.println(yellow + "2. Exit...." + reset);
-        int userInput = User_input();
-        int[] randomArray = generateRandomArray(userInput);
+        while (true) {
+            System.out.println(yellow + "====== MANAGER MENU ======" + reset);
+            System.out.println(blue + "1. Run " + yellow + "Sorting " + blue + "Algorithms" + reset);
+            System.out.println(yellow + "2. Exit...." + reset); 
+            Scanner input = new Scanner(System.in);
+            String selection = input.nextLine(); 
+            if (selection.charAt(0) != '1' && selection.charAt(0) != '2') {
+                System.out.println(blue + "You have entered an invalid number" + reset);
+            } else if (selection.charAt(0) == '2') {
+                // Çıkış
+                System.out.println(yellow + "Exiting program. Goodbye!" + reset);
+                break;
+            } else if (selection.charAt(0) == '1') {
+                // Kullanıcıdan giriş al ve sıralama işlemlerini çalıştır
 
-        //test için array yazdırma
-        System.out.println(blue + "Generated Random Array:" + reset);
-        for (int number : randomArray) {
-            System.out.print(number + " ");
+                int userInput = User_input();
+                int[] randomArray = generate_Random_Array(userInput);
+                int[] radix_Array = generate_radix_Array(randomArray,userInput);
+                int[] shell_Array = generate_shell_Array(randomArray,userInput);
+                int[] heap_Arrayy = generate_heap_Array(randomArray,userInput);
+                int[] insertion_Array = generate_insertion_Array(randomArray,userInput);
+                int[] shell_Sort = shellSort(shell_Array);
+                for (int number: shell_Sort) {
+                    
+                    System.out.println(number + " ");
+                }
+
+                //test için array yazdırma
+                // System.out.println(blue + "Generated Random Array:" + reset);
+                // for (int number : randomArray) {
+                //     System.out.print(number + " ");
+                // }
+                // System.out.println(); 
+                // for (int number : radix_Array) {
+                //     System.out.print(number + " ");
+                // }
+                // System.out.println(); 
+                // for (int number : shell_Array) {
+                //     System.out.print(number + " ");
+                // }
+                // System.out.println(); 
+                // for (int number : heap_Arrayy) {
+                //     System.out.print(number + " ");
+                // }
+                // System.out.println(); 
+                // for (int number : insertion_Array) {
+                //     System.out.print(number + " ");
+                // }
+                // System.out.println(); 
+                break;
+            }
         }
-        System.out.println(); 
+
+
     }
 }
-
