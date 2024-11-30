@@ -16,7 +16,7 @@ class Authentication {
     }
 }
 
-public class Main {
+public class mainMenu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 

@@ -7,6 +7,7 @@ public class DatabaseFacade {
 
     private Connection connection;
 
+    // JDBC sürücüsünü yüklemek için statik blok
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -15,6 +16,7 @@ public class DatabaseFacade {
         }
     }
 
+    // Veritabanı bağlantısını kurar
     public DatabaseFacade() {
         try {
             connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -23,13 +25,22 @@ public class DatabaseFacade {
         }
     }
 
-    public RegularEmployee getRegularEmployeeByUsername(String username) {
+    /**
+     * Verilen kullanıcı adına göre bir RegularEmployee nesnesi döndürür.
+     *
+     * @param username Çalışanın kullanıcı adı.
+     * @return RegularEmployee nesnesi veya null.
+     */
+    public Manager getRegularEmployeeByUsername(String username) {
+        
         String query = "SELECT * FROM employees WHERE username = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return new RegularEmployee(
+
+                // RegularEmployee nesnesini oluştur ve döndür
+                return new Manager(
                     rs.getInt("e_id"),
                     rs.getString("username"),
                     rs.getString("password"),
@@ -37,8 +48,8 @@ public class DatabaseFacade {
                     rs.getString("name"),
                     rs.getString("surname"),
                     rs.getString("phone_number"),
-                    rs.getString("dateofbirth"),
-                    rs.getString("dateofstart"),
+                    rs.getString("dateOfBirth"),
+                    rs.getString("dateOfStart"),
                     rs.getString("email")
                 );
             }
@@ -47,4 +58,29 @@ public class DatabaseFacade {
         }
         return null;
     }
+
+    public void displayEmployeesByRole(String role) {
+        /*          !!!!!DEĞİEŞECEK!!!!!!!!1
+        try (Connection conn = DatabaseUtils.getConnection()) {
+            String query = "SELECT * FROM employees WHERE role = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, role);
+            ResultSet rs = stmt.executeQuery();
+    
+            System.out.println("ID | Name | Surname | Role");
+            while (rs.next()) {
+                System.out.printf("%d | %s | %s | %s%n",
+                        rs.getInt("employee_id"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getString("role"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error displaying employees by role: " + e.getMessage());
+        }
+             */
+    }
+    
+
+
 }

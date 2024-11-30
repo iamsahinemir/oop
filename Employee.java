@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public abstract class Employee {
 
     protected int employeeId;      //şimdilik kullanılmıyor

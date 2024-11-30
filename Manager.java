@@ -1,12 +1,9 @@
-//import java.time.LocalDate;
-
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Manager extends RegularEmployee {
 
     
-    public Manager(int employeeId, String username, String password,
+    public Manager(int employeeId, String username, String password, String role,
                   String name, String surname, String phoneNumber, String dateOfBirth, String dateOfStart, String email){
 
         super(employeeId, username, password, "Manager", name, surname, phoneNumber, dateOfBirth, dateOfStart, email);
@@ -28,16 +25,35 @@ public class Manager extends RegularEmployee {
     // Tüm çalışanları listeleme
     public void displayAllEmployees() {
         
-        EmployeeDAO dao = new EmployeeDAO();
-        System.out.print("Enter username: ");
-        String username = input.nextLine();
-        dao.displayEmployee(username);
         
+    }
+
+    public void displayEmployeesByUsername(){
+
+        System.out.println("----- Regular Employee Proile ----");
+        System.out.println("Username: "+ getUsername());
+        System.out.println("Name: " + getName());
+        System.out.println("Surname: "+ getSurname());
+        System.out.println("Role: "+ getRole());
+        System.out.println("Phone Number: "+ getPhoneNumber());
+        System.out.println("Date of Birth: "+ getDateOfBirth());
+        System.out.println("Date of Start: "+ getDateOfStart());
+        System.out.println("Email: "+ getEmail());
+
     }
 
     //Rol bazlı çalışanları listeleme
     public void displayEmployeesByRole(String role) {
         
+        System.out.println("----- Regular Employee Proile ----");
+        System.out.println("Username: "+ getUsername());
+        System.out.println("Name: " + getName());
+        System.out.println("Surname: "+ getSurname());
+        System.out.println("Role: "+ getRole());
+        System.out.println("Phone Number: "+ getPhoneNumber());
+        System.out.println("Date of Birth: "+ getDateOfBirth());
+        System.out.println("Date of Start: "+ getDateOfStart());
+        System.out.println("Email: "+ getEmail());
     }
 
     // Çalışan non-profile bilgilerini güncelleme
@@ -48,18 +64,6 @@ public class Manager extends RegularEmployee {
     // Çalışan Ekleme
     public void hireEmployee() {
         
-        EmployeeDAO dao = new EmployeeDAO();
-        System.out.print("Enter username: ");
-        username = input.nextLine();
-        System.out.print("Enter password: ");
-        String password = input.nextLine();
-        System.out.print("Enter role (manager/engineer/technician/intern): ");
-        String role = input.nextLine();
-        System.out.print("Enter name: ");
-        String name = input.nextLine();
-        System.out.print("Enter surname: ");
-        String surname = input.nextLine();
-        dao.addEmployee(username, password, role, name, surname);
 
     }
 
@@ -78,14 +82,15 @@ public class Manager extends RegularEmployee {
     public static void main(String[] args) {
 
         DatabaseFacade dbFacade = new DatabaseFacade();
-        
-        RegularEmployee employee = dbFacade.getRegularEmployeeByUsername("iamsahinemir");
-        RegularEmployee employee2 = dbFacade.getRegularEmployeeByUsername("sezowastaken");
-        /*
-        Employee employee1 = new Employee(123456, "sezowastaken", "951753",
-        "Technician", "Sezai", "Araplarlı",
-        "+90 533 791 83 37", "sezowastaken@hotmail.com");
 
+
+
+        Manager manager3 = dbFacade.getRegularEmployeeByUsername("sezowastaken");
+        /*
+        Manager employee1 = new Manager(123456, "sezowastaken", "951753",
+        "Technician", "Sezai", "Araplarlı",
+        "+90 533 791 83 37", "", "sezowastaken@hotmail.com");
+        
         //manager1.displayProfile();
         
         //manager1.updateOwnProfile("sezowastaken@stu.khas.edu.tr", "123456", "+90 531 684 90 90");
@@ -101,8 +106,7 @@ public class Manager extends RegularEmployee {
 
         //manager1.hireEmployee();
         
-        employee.displayProfile();
-        employee2.displayProfile();
+        manager3.displayEmployeesByUsername();
 
     }
 
