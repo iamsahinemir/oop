@@ -16,8 +16,6 @@ public class AsciiArt {
         String whiteBold = "\033[1;37m";
         String redBold = "\033[1;31m";
         String cyanBold = "\033[1;36m";
-        String blackBold = "\033[1;30m";
-        String black = "\033[30m";       // Siyah
         String red = "\033[31m";         // Kırmızı
         String green = "\033[32m";       // Yeşil
         String yellow = "\033[33m";      // Sarı
@@ -106,9 +104,8 @@ public class AsciiArt {
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+green+" -----"+blue+"||"+green+"-/------`-"+whiteBold+"._/"+blue+"||"+green+"-"+yellow+"o"+green+"--"+yellow+"o"+green+"---"+yellow+"o"+green+"---"+resetColor);
         System.out.println();
         System.out.println();
-        System.out.println();
-        
-        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t   BİZ ve ilk porjemiz");
+        System.out.println(red+"İlktan Hoca and his assistants"+resetColor);
+        System.out.println(purple+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t   Us and our first projectz"+resetColor);
 
 
 
