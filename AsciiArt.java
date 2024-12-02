@@ -105,7 +105,7 @@ public class AsciiArt {
         System.out.println();
         System.out.println();
         System.out.println(red+"İlktan Hoca and his assistants"+resetColor);
-        System.out.println(purple+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t   Us and our first projectz"+resetColor);
+        System.out.println(purple+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t   Us and our first project"+resetColor);
 
 
 
