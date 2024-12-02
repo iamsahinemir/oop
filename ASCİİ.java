@@ -1,4 +1,4 @@
-public class Main {
+public class ASCİİ {
     public static void main(String[] args) {
         
         String[] colors = {
@@ -12,6 +12,7 @@ public class Main {
             "\u001B[37m" 
         };
         String resetColor = "\u001B[0m";
+        String greenBold = "\033[1;32m";
 
         
         String[] asciiArts = {
