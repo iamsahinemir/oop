@@ -294,7 +294,7 @@ public class Algorithms {
 
 
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         String reset = "\033[0m";
         String blue = "\033[34m";
         String yellow = "\033[33m";
@@ -385,16 +385,5 @@ public class Algorithms {
         
         
 
-    }*/
-
-
-public static int[] generateDataset(int size) {
-    int[] dataset = new int[size];
-    Random random = new Random();
-    for (int i = 0; i < size; i++) {
-        dataset[i] = random.nextInt(100000); // Random values between 0 and 99999
     }
-    return dataset;
-}
-
 }

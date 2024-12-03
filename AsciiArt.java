@@ -1,5 +1,5 @@
 public class AsciiArt {
-    public static void displayArt() {
+    public static void main(String[] args) {
         String[] colors = {
             "\u001B[31m",
             "\u001B[35m",
