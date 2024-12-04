@@ -2,8 +2,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.io.UnsupportedEncodingException;
 
 public class Manager extends Employee {
@@ -201,6 +202,84 @@ public class Manager extends Employee {
     
     
 
+    public void hireEmployee(String username, String password, String role, String name, String surname, String phone, String email, String dob, String startDate) {
+        try {
+            // Role doğrulama
+            if (!role.matches("(?i)manager|technician|intern|engineer")) {
+                System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
+                return;
+            }
+    
+            // Telefon doğrulama
+            if (!isValidPhone(phone)) {
+                System.out.println("Invalid phone number. Please enter a valid 11-digit number.");
+                return;
+            }
+    
+            // E-posta doğrulama
+            if (!isValidEmail(email)) {
+                System.out.println("Invalid email format. Please enter a valid email.");
+                return;
+            }
+    
+            // Tarih doğrulama
+            if (!isValidDate(dob)) {
+                System.out.println("Invalid date format for Date of Birth. Please use YYYY-MM-DD.");
+                return;
+            }
+
+            if (!isValidDate(startDate)) {
+                System.out.println("Invalid date format for Start Date. Please use YYYY-MM-DD.");
+                return;
+            }
+
+            // Bugünün tarihinden önce mi kontrol
+            if (!isDateBeforeToday(dob)) {
+                System.out.println("Date of Birth cannot be in the future.");
+                return;
+            }
+
+            if (!isDateBeforeToday(startDate)) {
+                System.out.println("Start Date cannot be in the future.");
+                return;
+            }
+
+            // Doğum tarihi ile başlama tarihi arasındaki fark 18 yıldan az mı kontrol et
+            if (!isBirthDateBeforeStartDate(dob, startDate)) {
+                System.out.println("Date of Birth cannot be greater than or equal to Start Date, and the employee must be at least 18 years old.");
+                return;
+            }
+
+
+
+    
+            try (Connection conn = DatabaseFacade.getConnection()) {
+                String query = "INSERT INTO employees (username, password, role, name, surname, phone_number, email, dateofbirth, dateofstart) " +
+                               "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setString(1, username);
+                stmt.setString(2, password);
+                stmt.setString(3, role);
+                stmt.setString(4, name);
+                stmt.setString(5, surname);
+                stmt.setString(6, phone);
+                stmt.setString(7, email);
+                stmt.setString(8, dob);
+                stmt.setString(9, startDate);
+    
+                int rowsInserted = stmt.executeUpdate();
+                if (rowsInserted > 0) {
+                    System.out.println("Employee hired successfully.");
+                } else {
+                    System.out.println("Error hiring employee.");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error inserting employee: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+        }
+    }
 public void hireEmployee(String username, String role, String name, String surname, String phone, String email, String dob, String startDate) {
     String defaultPassword = "defaultpassword"; // Varsayılan şifre
 
@@ -289,26 +368,50 @@ public void hireEmployee(String username, String role, String name, String surna
     }
     
     private boolean isValidDate(String date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        sdf.setLenient(false); // Tarih doğruluğunu sıkı bir şekilde kontrol eder
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
-            sdf.parse(date);
+            LocalDate.parse(date, formatter); // Tarihi parse et
             return true;
-        } catch (ParseException e) {
-            System.out.println("Invalid date. Please provide a valid calendar date (e.g., 2023-12-01).");
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid date format. Please use YYYY-MM-DD.");
+            return false;
+        } catch (Exception e) {
+            System.out.println("Unexpected error while parsing the date: " + e.getMessage());
             return false;
         }
     }
+    
+
+    private boolean isDateBeforeToday(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate inputDate = LocalDate.parse(date, formatter);
+            LocalDate today = LocalDate.now();
+            return !inputDate.isAfter(today);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+    
+    
+    
     
     
     private boolean isBirthDateBeforeStartDate(String dob, String startDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            return sdf.parse(dob).before(sdf.parse(startDate));
-        } catch (ParseException e) {
+            LocalDate birthDate = LocalDate.parse(dob, formatter);
+            LocalDate startWorkDate = LocalDate.parse(startDate, formatter);
+    
+            
+            return birthDate.isBefore(startWorkDate) && birthDate.plusYears(18).isBefore(startWorkDate);
+        } catch (DateTimeParseException e) {
             return false;
         }
     }
+      
+    
+
     
     
     

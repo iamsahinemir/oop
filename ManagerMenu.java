@@ -22,6 +22,9 @@ public class ManagerMenu {
         String whiteBold = "\033[1;37m";    // Kalın Beyaz
         Scanner scanner = new Scanner(System.in);
         while (true) {
+
+
+
             System.out.println(greenBold + "\n=== MANAGER MENU - " + manager.getName() + " " + manager.getSurname() + " ===" + reset);
             System.out.println(blue + "1. Display All Employees" + reset);
             System.out.println(cyan + "2. Display Employees by Role" + reset);
