@@ -20,30 +20,30 @@ public class Login {
         Authentication auth = new Authentication();
         String role = auth.authenticate(username, password);
 
+        if (password.equals("defaultpassword")) {
+            System.out.println(RED + "You are using the default password. Please change your password." + RESET);
+            changePassword(username);
+            start(); // Şifre değiştirme sonrası giriş ekranına dön
+            return;
+        }
+
         if (role.equals("manager")) {
             Manager manager = getManagerDetails(username);
             if (manager != null) {
-                
-
                 System.out.println(GREEN + "Login successful. Redirecting to Manager Menu..." + RESET);
-                Utils.clearConsole();
                 new ManagerMenu(manager).displayMenu();
             } else {
-                Utils.clearConsole();
                 System.out.println(RED + "Error: Unable to fetch manager details." + RESET);
             }
         } else if (role.equals("technician") || role.equals("intern") || role.equals("engineer")) {
             RegularEmployee employee = getEmployeeDetails(username);
             if (employee != null) {
-                Utils.clearConsole();
                 System.out.println(GREEN + "Login successful. Redirecting to Employee Menu..." + RESET);
                 new RegularMenu(employee).displayMenu();
             } else {
-                Utils.clearConsole();
                 System.out.println(RED + "Error: Unable to fetch employee details." + RESET);
             }
         } else {
-            Utils.clearConsole();
             System.out.println(RED + "Invalid login. Please try again." + RESET);
             start();
         }
@@ -99,5 +99,27 @@ public class Login {
             System.out.println("Error fetching employee details: " + e.getMessage());
         }
         return null;
+    }
+
+    private void changePassword(String username) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your new password: ");
+        String newPassword = scanner.nextLine();
+
+        try (Connection conn = DatabaseFacade.getConnection()) {
+            String query = "UPDATE employees SET password = ? WHERE username = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, newPassword);
+            stmt.setString(2, username);
+
+            int rowsUpdated = stmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Password updated successfully. Please log in again.");
+            } else {
+                System.out.println("Error updating password. Please try again.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error changing password: " + e.getMessage());
+        }
     }
 }

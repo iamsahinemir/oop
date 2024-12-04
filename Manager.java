@@ -33,8 +33,8 @@ public class Manager extends Employee {
     }
 
     public void updateOwnProfile(String newPassword, String newPhone, String newEmail) {
-        if (!newPhone.matches("\\d{11}")) {
-            System.out.println("Invalid phone number. It must be 11 digits.");
+        if (!newPhone.matches("\\d{10,15}")) {
+            System.out.println("Invalid phone number.");
             return;
         }
         if (!newEmail.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
@@ -280,10 +280,86 @@ public class Manager extends Employee {
             System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
+public void hireEmployee(String username, String role, String name, String surname, String phone, String email, String dob, String startDate) {
+    String defaultPassword = "defaultpassword"; // Varsayılan şifre
+
+    try {
+        // Boş değer kontrolü
+        if (username == null || username.trim().isEmpty() ||
+            role == null || role.trim().isEmpty() ||
+            name == null || name.trim().isEmpty() ||
+            surname == null || surname.trim().isEmpty() ||
+            phone == null || phone.trim().isEmpty() ||
+            email == null || email.trim().isEmpty() ||
+            dob == null || dob.trim().isEmpty() ||
+            startDate == null || startDate.trim().isEmpty()) {
+            System.out.println("All fields are required. Please ensure no field is left empty.");
+            return;
+        }
+
+        // Role doğrulama
+        if (!role.matches("(?i)manager|technician|intern|engineer")) {
+            System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
+            return;
+        }
+
+        // Telefon doğrulama
+        if (!isValidPhone(phone)) {
+            System.out.println("Invalid phone number. Please enter a valid 11-digit number.");
+            return;
+        }
+
+        // E-posta doğrulama
+        if (!isValidEmail(email)) {
+            System.out.println("Invalid email format. Please enter a valid email.");
+            return;
+        }
+
+        // Tarih doğrulama
+        if (!isValidDate(dob) || !isValidDate(startDate)) {
+            System.out.println("Invalid date format. Please use YYYY-MM-DD.");
+            return;
+        }
+
+        // Doğum tarihi işe başlama tarihinden önce mi kontrol et
+        if (!isBirthDateBeforeStartDate(dob, startDate)) {
+            System.out.println("Date of birth cannot be greater than or equal to start date.");
+            return;
+        }
+
+        try (Connection conn = DatabaseFacade.getConnection()) {
+            String query = "INSERT INTO employees (username, password, role, name, surname, phone_number, email, dateofbirth, dateofstart) " +
+                           "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, username);
+            stmt.setString(2, defaultPassword); // Varsayılan şifre atanıyor
+            stmt.setString(3, role);
+            stmt.setString(4, name);
+            stmt.setString(5, surname);
+            stmt.setString(6, phone);
+            stmt.setString(7, email);
+            stmt.setString(8, dob);
+            stmt.setString(9, startDate);
+
+            int rowsInserted = stmt.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Employee hired successfully with default password.");
+            } else {
+                System.out.println("Error hiring employee.");
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("Error inserting employee: " + e.getMessage());
+    } catch (Exception e) {
+        System.out.println("An unexpected error occurred: " + e.getMessage());
+    }
+}
+
+
     
     // Yardımcı doğrulama metotları
     private boolean isValidPhone(String phone) {
-        return phone.matches("^\\d{11}$");
+        return phone.matches("\\d{10,15}");
     }
     
     private boolean isValidEmail(String email) {

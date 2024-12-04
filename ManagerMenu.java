@@ -188,9 +188,6 @@ public class ManagerMenu {
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
     
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-    
         System.out.print("Enter role (manager, technician, intern, engineer): ");
         String role = scanner.nextLine();
     
@@ -200,7 +197,7 @@ public class ManagerMenu {
         System.out.print("Enter surname: ");
         String surname = scanner.nextLine();
     
-        System.out.print("Enter phone number (11 digits): ");
+        System.out.print("Enter phone number : ");
         String phone = scanner.nextLine();
     
         System.out.print("Enter email address: ");
@@ -213,7 +210,7 @@ public class ManagerMenu {
         String startDate = scanner.nextLine();
     
         Utils.clearConsole();
-        manager.hireEmployee(username, password, role, name, surname, phone, email, dob, startDate);
+        manager.hireEmployee(username, role, name, surname, phone, email, dob, startDate);
     }
     
 
@@ -274,9 +271,9 @@ public class ManagerMenu {
                     case 2:
                         // Update phone number
                         while (true) {
-                            System.out.print("Enter new phone number (11 digits): ");
+                            System.out.print("Enter new phone number : ");
                             String newPhone = scanner.nextLine();
-                            if (newPhone.matches("\\d{11}")) {
+                            if (newPhone.matches("\\d{10,15}")) {
                                 try {
                                     manager.updateOwnProfile(manager.getPassword(), newPhone, manager.getEmail());
                                     Utils.clearConsole();
@@ -383,6 +380,7 @@ public class ManagerMenu {
             startTime = System.nanoTime();
             Arrays.sort(collectionsData);
             endTime = System.nanoTime();
+        
             
     
             // Verify correctness
