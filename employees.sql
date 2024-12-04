@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 04 Ara 2024, 16:47:39
+-- Üretim Zamanı: 04 Ara 2024, 18:26:40
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -46,7 +46,7 @@ CREATE TABLE `employees` (
 
 INSERT INTO `employees` (`e_id`, `username`, `password`, `role`, `name`, `surname`, `phone_number`, `dateofbirth`, `dateofstart`, `email`) VALUES
 (1, 'iamsahinemir', 'asd', 'manager', 'emir', 'şahin', '05555555559', '2000-12-15', '2022-09-09', 'esad.emir34@stu.khas.edu.tr'),
-(2, 'dede', 'dede1234', 'intern', 'Tunahan', 'Tüze', '05438813008', '2000-06-25', '2021-09-20', 'emir@tuna.com'),
+(2, 'dede', '123', 'intern', 'Tunahan', 'Tüze', '05694712305', '2000-06-25', '2021-09-20', 'deneme@tuna.com'),
 (3, 'sezowastaken', 'sezo1234', 'manager', 'Sezai', 'Büyükdalga', '05337918339', '2004-01-01', '2022-09-20', 'sezowastaken@stu.khas.edu.tr'),
 (5, 'zülal1', 'zülal1234', 'intern', 'Zülal', 'Sönmez', '05303049250', '2000-01-01', '2020-09-09', 'zulalsonmez@stu.khas.edu.tr'),
 (6, 'jdoe', '12345', 'intern', 'emir', 'emir', '05555555569', '1980-01-01', '2020-01-01', 'jdoe@example.com'),
@@ -88,7 +88,7 @@ ALTER TABLE `employees`
 -- Tablo için AUTO_INCREMENT değeri `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `e_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

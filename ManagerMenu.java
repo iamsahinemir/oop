@@ -27,10 +27,8 @@ public class ManagerMenu {
         String cyanBold = "\033[1;36m";     
         String whiteBold = "\033[1;37m";    
         Scanner scanner = new Scanner(System.in);
+    
         while (true) {
-
-
-
             System.out.println(greenBold + "\n=== MANAGER MENU - " + manager.getName() + " " + manager.getSurname() + " ===" + reset);
             System.out.println(blue + "1. Display All Employees" + reset);
             System.out.println(cyan + "2. Display Employees by Role" + reset);
@@ -42,61 +40,72 @@ public class ManagerMenu {
             System.out.println(magenta + "8. Run Sorting Algorithms" + reset);
             System.out.println(cyanBold + "9. Logout" + reset);
             System.out.print(whiteBold + "Enter your choice: " + reset);
-
-
-
-            if (scanner.hasNextInt()) {
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
-
-                switch (choice) {
-                    case 1:
-                        Utils.clearConsole();
-                        manager.displayAllEmployees();
-                        break;
-                    case 2:
-                        Utils.clearConsole();
-                        displayEmployeesByRole(scanner);
-                        break;
-                    case 3:
-                        Utils.clearConsole();
-                        displayEmployeeByUsername(scanner);
-                        break;
-                    case 4:
-                        Utils.clearConsole();
-                        updateEmployeeNonProfile(scanner);
-                        break;
-                    case 5:
-                        Utils.clearConsole();
-                        hireNewEmployee(scanner);
-                        break;
-                    case 6:
-                        Utils.clearConsole();
-                        fireEmployee(scanner);
-                        break;
-                    case 7:
-                        Utils.clearConsole();
-                        updateOwnProfile(scanner);
-                        break;
-                    case 8:
-                        Utils.clearConsole();
-                        runSortingAlgorithms(scanner);
-                        
-                        break;
-                    case 9:
-                        System.out.println("Logging out...");
-                        Utils.clearConsole();
-                        Main.main(new String[]{}); 
-                        return;
-                    default:
-                        System.out.println("Invalid choice. Please enter a valid option (1-9).");
-                }
-            } else {
-                System.out.println("Invalid input. Please enter a valid integer.");
-                scanner.nextLine(); 
+    
+            // Kullanıcı girdisini al
+            String input = scanner.nextLine().trim();
+    
+            // Geçerli giriş kontrolü
+            if (!input.matches("[1-9]")) {
+                System.out.println("Invalid input. Please enter a number between 1 and 9.");
+                continue; // Geçersiz girişte menüye geri dön
+            }
+    
+            // Geçerli giriş işleme alınır
+            int choice = Integer.parseInt(input);
+    
+            switch (choice) {
+                case 1:
+                    Utils.clearConsole();
+                    manager.displayAllEmployees();
+                    break;
+    
+                case 2:
+                    Utils.clearConsole();
+                    displayEmployeesByRole(scanner);
+                    break;
+    
+                case 3:
+                    Utils.clearConsole();
+                    displayEmployeeByUsername(scanner);
+                    break;
+    
+                case 4:
+                    Utils.clearConsole();
+                    updateEmployeeNonProfile(scanner);
+                    break;
+    
+                case 5:
+                    Utils.clearConsole();
+                    hireNewEmployee(scanner);
+                    break;
+    
+                case 6:
+                    Utils.clearConsole();
+                    fireEmployee(scanner);
+                    break;
+    
+                case 7:
+                    Utils.clearConsole();
+                    updateOwnProfile(scanner);
+                    break;
+    
+                case 8:
+                    Utils.clearConsole();
+                    runSortingAlgorithms(scanner);
+                    break;
+    
+                case 9:
+                    System.out.println("Logging out...");
+                    Utils.clearConsole();
+                    Main.main(new String[]{}); 
+                    return;
+    
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option (1-9).");
             }
         }
     }
+    
 
     /**
      * asks manager to enter a role to sort employees by their roles
@@ -154,54 +163,79 @@ public class ManagerMenu {
      */
     private void updateEmployeeNonProfile(Scanner scanner) {
         System.out.print("Enter the employee ID to update: ");
-        if (scanner.hasNextInt()) {
-            int employeeId = scanner.nextInt();
-            scanner.nextLine();
+        String idInput = scanner.nextLine().trim();
     
-            
-            System.out.println("Select the field to update:");
-            System.out.println("1. Name");
-            System.out.println("2. Surname");
-            System.out.println("3. Role");
-            System.out.print("Enter your choice: ");
-    
-            if (scanner.hasNextInt()) {
-                int choice = scanner.nextInt();
-                scanner.nextLine();
-                String newValue;
-    
-                switch (choice) {
-                    case 1:
-                        System.out.print("Enter new name: ");
-                        newValue = scanner.nextLine();
-                        manager.updateEmployeeNonProfile(employeeId, newValue, null, null);
-                        break;
-                    case 2:
-                        System.out.print("Enter new surname: ");
-                        newValue = scanner.nextLine();
-                        manager.updateEmployeeNonProfile(employeeId, null, newValue, null);
-                        break;
-                    case 3:
-                        System.out.print("Enter new role (manager, technician, intern, engineer): ");
-                        newValue = scanner.nextLine();
-                        if (!newValue.matches("(?i)manager|technician|intern|engineer")) {
-                            System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
-                            return;
-                        }
-                        manager.updateEmployeeNonProfile(employeeId, null, null, newValue);
-                        break;
-                    default:
-                        System.out.println("Invalid choice. Please select a valid option.");
-                }
-            } else {
-                System.out.println("Invalid input. Please enter a number.");
-                scanner.nextLine();
-            }
-        } else {
+        // Çalışan ID'si doğrulama
+        if (!idInput.matches("\\d+")) {
             System.out.println("Invalid input. Please enter a valid employee ID.");
-            scanner.nextLine();
-}
-}
+            return;
+        }
+    
+        int employeeId = Integer.parseInt(idInput);
+    
+        System.out.println("Select the field to update:");
+        System.out.println("1. Name");
+        System.out.println("2. Surname");
+        System.out.println("3. Role");
+        System.out.println("4. Back to Menu");
+        System.out.print("Enter your choice: ");
+    
+        // Kullanıcı seçimini al
+        String choiceInput = scanner.nextLine().trim();
+    
+        // Geçerli giriş kontrolü
+        if (!choiceInput.matches("[1-3]")) {
+            System.out.println("Invalid choice. Please select a valid option.");
+            return;
+        }
+    
+        int choice = Integer.parseInt(choiceInput);
+        String newValue;
+    
+        switch (choice) {
+            case 1:
+                System.out.print("Enter new name: ");
+                newValue = scanner.nextLine().trim();
+                if (newValue.isEmpty()) {
+                    System.out.println("Name cannot be empty.");
+                    return;
+                }
+                manager.updateEmployeeNonProfile(employeeId, newValue, null, null);
+                System.out.println("Employee name updated successfully.");
+                break;
+    
+            case 2:
+                System.out.print("Enter new surname: ");
+                newValue = scanner.nextLine().trim();
+                if (newValue.isEmpty()) {
+                    System.out.println("Surname cannot be empty.");
+                    return;
+                }
+                manager.updateEmployeeNonProfile(employeeId, null, newValue, null);
+                System.out.println("Employee surname updated successfully.");
+                break;
+    
+            case 3:
+                System.out.print("Enter new role (manager, technician, intern, engineer): ");
+                newValue = scanner.nextLine().trim();
+                if (!newValue.matches("(?i)manager|technician|intern|engineer")) {
+                    System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
+                    return;
+                }
+                manager.updateEmployeeNonProfile(employeeId, null, null, newValue);
+                System.out.println("Employee role updated successfully.");
+                break;
+
+            case 4:
+                System.out.println("Returning to main menu...");
+                Utils.clearConsole();
+                return;
+    
+            default:
+                System.out.println("Invalid choice. Please select a valid option.");
+        }
+    }
+    
     
     /**
      * gets new employee's profile and non-profile fields and provokes hire employee method from manager class
@@ -284,83 +318,84 @@ public class ManagerMenu {
             System.out.println("4. Back to Main Menu");
             System.out.print("Enter your choice: ");
     
-            if (scanner.hasNextInt()) {
-                int choice = scanner.nextInt();
-                scanner.nextLine(); 
+            // Kullanıcı girdisini al
+            String input = scanner.nextLine().trim();
     
-                switch (choice) {
-                    case 1:
-                        
-                        System.out.print("Enter new password: ");
-                        String newPassword = scanner.nextLine();
-                        try {
-                            manager.updateOwnProfile(newPassword, manager.getPhoneNumber(), manager.getEmail());
-                            Utils.clearConsole();
-                            System.out.println("Password updated successfully.");
-                        } catch (Exception e) {
-                            Utils.clearConsole();
-                            System.out.println("Error updating password: " + e.getMessage());
-                        }
+            // Girdi doğrulaması
+            if (!input.matches("[1-4]")) {
+                System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+                continue; // Menüye geri dön
+            }
+    
+            // Girdi geçerliyse işle
+            int choice = Integer.parseInt(input);
+    
+            switch (choice) {
+                case 1:
+                    // Şifre güncelleme
+                    System.out.print("Enter new password: ");
+                    String newPassword = scanner.nextLine().trim();
+                    if (newPassword.isEmpty()) {
+                        System.out.println("Password cannot be empty.");
                         break;
-    
-                    case 2:
-                        
-                        while (true) {
-                            System.out.print("Enter new phone number : ");
-                            String newPhone = scanner.nextLine();
-                            if (newPhone.matches("\\d{10,15}")) {
-                                try {
-                                    manager.updateOwnProfile(manager.getPassword(), newPhone, manager.getEmail());
-                                    Utils.clearConsole();
-                                    System.out.println("Phone number updated successfully.");
-                                    break;
-                                } catch (Exception e) {
-                                    Utils.clearConsole();
-                                    System.out.println("Error updating phone number: " + e.getMessage());
-                                    break;
-                                }
-                            } else {
-                                System.out.println("Invalid phone number. Please enter 11 digits.");
-                            }
-                        }
-                        break;
-    
-                    case 3:
-                        
-                        while (true) {
-                            System.out.print("Enter new email address: ");
-                            String newEmail = scanner.nextLine();
-                            if (newEmail.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-                                try {
-                                    manager.updateOwnProfile(manager.getPassword(), manager.getPhoneNumber(), newEmail);
-                                    Utils.clearConsole();
-                                    System.out.println("Email updated successfully.");
-                                    break;
-                                } catch (Exception e) {
-                                    Utils.clearConsole();
-                                    System.out.println("Error updating email: " + e.getMessage());
-                                    break;
-                                }
-                            } else {
-                                System.out.println("Invalid email address. Please enter a valid email (e.g., example@example.com).");
-                            }
-                        }
-                        break;
-    
-                    case 4:
-                        // Back to main menu
+                    }
+                    try {
+                        manager.updateOwnProfile(newPassword, manager.getPhoneNumber(), manager.getEmail());
                         Utils.clearConsole();
-                        return;
+                        System.out.println("Password updated successfully.");
+                    } catch (Exception e) {
+                        Utils.clearConsole();
+                        System.out.println("Error updating password: " + e.getMessage());
+                    }
+                    break;
     
-                    default:
-                        System.out.println("Invalid choice. Please enter a valid option (1-4).");
-                }
-            } else {
-                System.out.println("Invalid input. Please enter a valid number.");
-                scanner.nextLine();
+                case 2:
+                    // Telefon numarası güncelleme
+                    System.out.print("Enter new phone number: ");
+                    String newPhone = scanner.nextLine().trim();
+                    if (!newPhone.matches("\\d{10,15}")) {
+                        System.out.println("Invalid phone number. Please enter 10 to 15 digits.");
+                        break;
+                    }
+                    try {
+                        manager.updateOwnProfile(manager.getPassword(), newPhone, manager.getEmail());
+                        Utils.clearConsole();
+                        System.out.println("Phone number updated successfully.");
+                    } catch (Exception e) {
+                        Utils.clearConsole();
+                        System.out.println("Error updating phone number: " + e.getMessage());
+                    }
+                    break;
+    
+                case 3:
+                    // E-posta adresi güncelleme
+                    System.out.print("Enter new email address: ");
+                    String newEmail = scanner.nextLine().trim();
+                    if (!newEmail.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+                        System.out.println("Invalid email address. Please enter a valid email (e.g., example@example.com).");
+                        break;
+                    }
+                    try {
+                        manager.updateOwnProfile(manager.getPassword(), manager.getPhoneNumber(), newEmail);
+                        Utils.clearConsole();
+                        System.out.println("Email updated successfully.");
+                    } catch (Exception e) {
+                        Utils.clearConsole();
+                        System.out.println("Error updating email: " + e.getMessage());
+                    }
+                    break;
+    
+                case 4:
+                    // Ana menüye dön
+                    Utils.clearConsole();
+                    return;
+    
+                default:
+                    System.out.println("Invalid choice. Please enter a number between 1 and 4.");
             }
         }
     }
+    
     
     
     
