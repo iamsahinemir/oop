@@ -23,8 +23,7 @@ public class ManagerMenu {
         Scanner scanner = new Scanner(System.in);
         while (true) {
 
-            String name = Authentication.getLoggedInName();
-            String surname = Authentication.getLoggedInSurname();
+
 
             System.out.println(greenBold + "\n=== MANAGER MENU - " + manager.getName() + " " + manager.getSurname() + " ===" + reset);
             System.out.println(blue + "1. Display All Employees" + reset);
@@ -384,7 +383,6 @@ public class ManagerMenu {
             startTime = System.nanoTime();
             Arrays.sort(collectionsData);
             endTime = System.nanoTime();
-            long collectionsExecutionTime = endTime - startTime;
             
     
             // Verify correctness
