@@ -1,4 +1,10 @@
 public class AsciiArt {
+     /**
+     * This is our ascii art 
+     * @author Dilvin Aydin
+     * @author Zülal Sönmez
+     * @author Tunahan Tuze 
+     */
     public static void displayArt() {
         String[] colors = {
             "\u001B[31m",
@@ -16,13 +22,13 @@ public class AsciiArt {
         String whiteBold = "\033[1;37m";
         String redBold = "\033[1;31m";
         String cyanBold = "\033[1;36m";
-        String red = "\033[31m";         // Kırmızı
-        String green = "\033[32m";       // Yeşil
-        String yellow = "\033[33m";      // Sarı
-        String blue = "\033[34m";        // Mavi
-        String purple = "\033[35m";      // Mor
-        String cyan = "\033[36m";        // Camgöbeği
-        String white = "\033[37m";       // Beyaz
+        String red = "\033[31m";         
+        String green = "\033[32m";       
+        String yellow = "\033[33m";     
+        String blue = "\033[34m";        
+        String purple = "\033[35m";    
+        String cyan = "\033[36m";        
+        String white = "\033[37m";       
         
         String[] asciiArts = {
                  " __      _____________.____   _________  ________      _____  ___________ \n" +

@@ -23,8 +23,7 @@ public class ManagerMenu {
         Scanner scanner = new Scanner(System.in);
         while (true) {
 
-            String name = Authentication.getLoggedInName();
-            String surname = Authentication.getLoggedInSurname();
+
 
             System.out.println(greenBold + "\n=== MANAGER MENU - " + manager.getName() + " " + manager.getSurname() + " ===" + reset);
             System.out.println(blue + "1. Display All Employees" + reset);
@@ -198,7 +197,7 @@ public class ManagerMenu {
         System.out.print("Enter surname: ");
         String surname = scanner.nextLine();
     
-        System.out.print("Enter phone number (11 digits): ");
+        System.out.print("Enter phone number : ");
         String phone = scanner.nextLine();
     
         System.out.print("Enter email address: ");
@@ -272,9 +271,9 @@ public class ManagerMenu {
                     case 2:
                         // Update phone number
                         while (true) {
-                            System.out.print("Enter new phone number (11 digits): ");
+                            System.out.print("Enter new phone number : ");
                             String newPhone = scanner.nextLine();
-                            if (newPhone.matches("\\d{11}")) {
+                            if (newPhone.matches("\\d{10,15}")) {
                                 try {
                                     manager.updateOwnProfile(manager.getPassword(), newPhone, manager.getEmail());
                                     Utils.clearConsole();
@@ -381,7 +380,7 @@ public class ManagerMenu {
             startTime = System.nanoTime();
             Arrays.sort(collectionsData);
             endTime = System.nanoTime();
-            long collectionsExecutionTime = endTime - startTime;
+        
             
     
             // Verify correctness
