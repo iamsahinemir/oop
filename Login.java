@@ -26,19 +26,24 @@ public class Login {
                 
 
                 System.out.println(GREEN + "Login successful. Redirecting to Manager Menu..." + RESET);
+                Utils.clearConsole();
                 new ManagerMenu(manager).displayMenu();
             } else {
+                Utils.clearConsole();
                 System.out.println(RED + "Error: Unable to fetch manager details." + RESET);
             }
         } else if (role.equals("technician") || role.equals("intern") || role.equals("engineer")) {
             RegularEmployee employee = getEmployeeDetails(username);
             if (employee != null) {
+                Utils.clearConsole();
                 System.out.println(GREEN + "Login successful. Redirecting to Employee Menu..." + RESET);
                 new RegularMenu(employee).displayMenu();
             } else {
+                Utils.clearConsole();
                 System.out.println(RED + "Error: Unable to fetch employee details." + RESET);
             }
         } else {
+            Utils.clearConsole();
             System.out.println(RED + "Invalid login. Please try again." + RESET);
             start();
         }

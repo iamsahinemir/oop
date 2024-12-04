@@ -297,6 +297,11 @@ public class Manager extends Employee {
     
 
     public void fireEmployee(int employeeId) {
+        if (employeeId == getE_id()) {
+            System.out.println("Error: You cannot fire yourself!");
+            return;
+        }
+    
         try (Connection conn = DatabaseFacade.getConnection()) {
             String query = "DELETE FROM employees WHERE e_id = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -314,5 +319,6 @@ public class Manager extends Employee {
             System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
+    
     
 }
