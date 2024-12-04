@@ -205,6 +205,19 @@ public void hireEmployee(String username, String role, String name, String surna
     String defaultPassword = "defaultpassword"; // Varsayılan şifre
 
     try {
+        // Boş değer kontrolü
+        if (username == null || username.trim().isEmpty() ||
+            role == null || role.trim().isEmpty() ||
+            name == null || name.trim().isEmpty() ||
+            surname == null || surname.trim().isEmpty() ||
+            phone == null || phone.trim().isEmpty() ||
+            email == null || email.trim().isEmpty() ||
+            dob == null || dob.trim().isEmpty() ||
+            startDate == null || startDate.trim().isEmpty()) {
+            System.out.println("All fields are required. Please ensure no field is left empty.");
+            return;
+        }
+
         // Role doğrulama
         if (!role.matches("(?i)manager|technician|intern|engineer")) {
             System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
@@ -262,6 +275,7 @@ public void hireEmployee(String username, String role, String name, String surna
         System.out.println("An unexpected error occurred: " + e.getMessage());
     }
 }
+
 
     
     // Yardımcı doğrulama metotları
