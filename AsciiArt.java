@@ -1,4 +1,10 @@
 public class AsciiArt {
+     /**
+     * This is our ascii art 
+     * @author Dilvin Aydin
+     * @author Zülal Sönmez
+     * @author Tunahan Tuze 
+     */
     public static void displayArt() {
         String[] colors = {
             "\u001B[31m",

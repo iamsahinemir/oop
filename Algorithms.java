@@ -184,7 +184,13 @@ public class Algorithms {
             countingSort(array, exp); 
         }
     }
-
+    
+     /**
+     * It is a helper method to perform counting sort based on the current digit.
+     * 
+     * @param array the array to sort
+     * @param exp the current digit place value
+     */
     
     private static void countingSort(int[] array, int exp) {
         int n = array.length;
@@ -209,8 +215,10 @@ public class Algorithms {
        
         System.arraycopy(output, 0, array, 0, n);
     }
-
-    
+    /**
+     * This reverses the order of elements in the array.
+     * @param array the array to reverse
+     */
     private static void reverseArray(int[] array) {
         int n = array.length;
         for (int i = 0; i < n / 2; i++) {
@@ -219,6 +227,13 @@ public class Algorithms {
             array[n - 1 - i] = temp;
         }
     } 
+    /**
+     * This performs shell sort on the input array.
+     * 
+     * @param shellarray the array to be sorted
+     * @return the sorted array
+     * @author Tunahan Tuze
+     */
 
     public static int[] shellSort(int[] shellarray) {
         int n = shellarray.length;
@@ -242,8 +257,14 @@ public class Algorithms {
     
         return shellarray; 
     }
-    
-
+        /**
+     * This performs heap sort on the input array.
+     * 
+     * @param heaparray the array to be sorted
+     * @return the sorted array
+     * @author Dilvin Aydin
+     * @author Zülal Sönmez
+     */
     public static int[] heapSort(int[] heaparray) {
         int n = heaparray.length;
     
@@ -260,7 +281,13 @@ public class Algorithms {
         }
         return heaparray;
     }
-    
+      /**
+     * ıt is a helper method to maintain the heap property.
+     * 
+     * @param heaparray the array representing the heap
+     * @param n the size of the heap
+     * @param i the index of the element to heapify
+     */
     private static void heapify(int[] heaparray, int n, int i) {
         int largest = i; 
         int left = 2 * i + 1; 
@@ -282,7 +309,13 @@ public class Algorithms {
             heapify(heaparray, n, largest);
         }
     }
-    
+   /**
+     * This performs insertion sort on the input array.
+     * 
+     * @param insertionarray the array to be sorted
+     * @return the sorted array
+     * @author Tunahan Tuze
+     */
     public static int[] insertionSort(int[] insertionArray) {
         int n = insertionArray.length;
 
@@ -299,12 +332,25 @@ public class Algorithms {
         }
         return insertionArray;
     }
-
+       /**
+     * This sorts the input list using the built-in Collections.sort method.
+     * 
+     * @param array the list of integers to be sorted
+     * @return the sorted list
+     * @author Tunahan Tuze
+     */
     public static List<Integer> collenction_Sort(List<Integer> array){
         Collections.sort(array); 
         return array;
     }
-
+    /**
+     * This compares two arrays and it checks if they are equal
+     * 
+     * @param shell_Arrayy the array to compare
+     * @param connection_Array the list to compare against
+     * @return true if the arrays are equal,  otherwise false
+     * @author Tunahan Tuze 
+     */
     public static boolean isEqual(int[] shell_Arrayy, List<Integer> connection_Array) {
         if (shell_Arrayy.length != connection_Array.size()) {
             return false;
@@ -317,6 +363,14 @@ public class Algorithms {
         return true;
     }
      
+    /**
+     * This compares an insertion sorted array and a list to check for equality.
+     * 
+     * @param instertion_Arrayy the insertion sorted array
+     * @param connection_Array the list to compare against
+     * @return true if the array and list are equal, otherwise false
+     * @author Tunahan Tuze 
+     */
     public static boolean isEqualInsertionforinsertion(int[] instertion_Arrayy, List<Integer> connection_Array) {
         if (instertion_Arrayy.length != connection_Array.size()) {
             return false;
@@ -340,6 +394,14 @@ public class Algorithms {
         }
         return true;
     }
+     /**
+     * This compares a radix sorted array and a list to check for equality.
+     * 
+     * @param Radix_Arrayy the radix sorted array
+     * @param connection_Array the list to compare against
+     * @return true if the array and list are equal, otherwise otherwise
+     * @author Tunahan Tuze 
+     */
 
     public static boolean isEqualHeap(int[] Heap_Arrayy, List<Integer> connection_Array) {
         if (Heap_Arrayy.length != connection_Array.size()) {
@@ -353,112 +415,20 @@ public class Algorithms {
         return true;
     }
 
-
-
-
-
-
-    /*public static void main(String[] args) {
-        String reset = "\033[0m";
-        String blue = "\033[34m";
-        String yellow = "\033[33m";
-        String greenBold = "\033[1;32m";
-        String red = "\033[0;31m";
-        while (true) {
-            System.out.println(yellow + "====== MANAGER MENU ======" + reset);
-            System.out.println(blue + "1. Run " + yellow + "Sorting " + blue + "Algorithms" + reset);
-            System.out.println(yellow + "2. Exit...." + reset); 
-            Scanner input = new Scanner(System.in);
-            String selection = input.nextLine(); 
-            if (selection.charAt(0) != '1' && selection.charAt(0) != '2') {
-                System.out.println(blue + "You have entered an invalid number" + reset);
-            } else if (selection.charAt(0) == '2') {
-                // Çıkış
-                System.out.println(yellow + "Exiting program. Goodbye!" + reset);
-                break;
-            } else if (selection.charAt(0) == '1') {
-                //int[]arraytest={120,240,32,46,5,6,7,8,9,10,1111};
-                int userInput = User_input();
-                int[] randomArray = generate_Random_Array(userInput);
-                int[] radix_Array = generate_radix_Array(randomArray,userInput);
-                int[] shell_Array = generate_shell_Array(randomArray,userInput);
-                int[] heap_Array = generate_heap_Array(randomArray,userInput);
-                int[] insertion_Array = generate_insertion_Array(randomArray,userInput);
-                int[] shell_Sort = shellSort(shell_Array);
-                int[] insertion_Sort = insertionSort(insertion_Array);
-                int[] heap_Sort = heapSort(heap_Array);
-                int[] radix_Sort = radixSort(radix_Array);
-                List<Integer> numbers = new ArrayList<Integer>();
-                for (int num : randomArray) {
-                    numbers.add(num); 
-                }
-                List<Integer> collection_sort = collenction_Sort(numbers); 
-                boolean isEqualShell = isEqual(shell_Sort, collection_sort);
-                boolean isEqualInsertionforinsertion = isEqual(insertion_Sort, collection_sort);
-                boolean isEqualRadix = isEqual(radix_Sort, collection_sort);
-                Boolean isEqualHeap = isEqual(heap_Sort,collection_sort);
-                
-                long shellStartTime = System.nanoTime();
-                shell_Sort = shellSort(shell_Array);
-                long shellEndTime = System.nanoTime();
-                long shellExecutionTime = shellEndTime - shellStartTime;
-                
-                
-                long insertionStartTime = System.nanoTime();
-                insertion_Sort = insertionSort(insertion_Array);
-                long insertionEndTime = System.nanoTime();
-                long insertionExecutionTime = insertionEndTime - insertionStartTime;
-                
-                long RadixStartTime = System.nanoTime();
-                insertion_Sort = insertionSort(radix_Array);
-                long RadixEndTime = System.nanoTime();
-                long RadixExecutionTime = RadixEndTime - RadixStartTime;
-                
-                long HeapStartTime = System.nanoTime();
-                insertion_Sort = insertionSort(radix_Array);
-                long HeapEndTime = System.nanoTime();
-                long HeapExecutionTime = HeapEndTime - HeapStartTime;
-                
-                
-                
-                
-                
-                System.out.println(red+"-     Algorthms Name   ---      Duration(Ns)      -"+reset);
-                System.out.println(greenBold+"|-----------------------|-------------------------|"+reset);
-                System.out.println(greenBold + "|" +blue +"    Shell Sort         "+ greenBold+ "|        " + yellow +       shellExecutionTime + " ns" + reset);
-                System.out.println(greenBold+"|-----------------------|-------------------------|"+reset);
-                System.out.println(greenBold + "|" +blue + "    Insertion Sort     "+ greenBold+ "|         " + yellow +    insertionExecutionTime + " ns" + reset );
-                System.out.println(greenBold + "|-----------------------|-------------------------|"+reset);
-                System.out.println(greenBold + "|" +blue +"    Radix Sort         "+ greenBold+ "|        " + yellow +      RadixExecutionTime + " ns"  +reset);
-                System.out.println(greenBold+"|-----------------------|-------------------------|"+reset);
-                System.out.println(greenBold + "|" +blue +"    Heap Sort          " + greenBold+ "|         "+ yellow +      HeapExecutionTime + " ns" + reset );
-                System.out.println(greenBold+"|-----------------------|-------------------------|"+reset);
-                
-
-                System.out.println();
-                System.out.println(blue+"Shell Sort is equals Collection Sort: " +yellow+ isEqualShell+reset);
-                System.out.println(yellow+"Insertion Sort is equals Collection Sort: " + blue + isEqualInsertionforinsertion+reset);
-                System.out.println(blue+"Radix Sort is equals Collection Sort: " +yellow+ isEqualRadix+reset);
-                System.out.println(yellow+"Heap Sort is equals Collection Sort: " + blue + isEqualHeap+reset);
-                System.out.println();
-                System.out.println();
-                
-                break;
-            }
-        }
-        
-        
-
-    }*/
-
-
-public static int[] generateDataset(int size) {
-    int[] dataset = new int[size];
-    Random random = new Random();
-    for (int i = 0; i < size; i++) {
+    /**
+     * This send to this in database .
+     * 
+     * @param size return de size of main array 
+     * @return dataset for value 
+     * @author Emir Esad Şahin
+     */
+    public static int[] generateDataset(int size) {
+        int[] dataset = new int[size];
+        Random random = new Random();
+        for (int i = 0; i < size; i++) {
         dataset[i] = random.nextInt(100000); // Random values between 0 and 99999
+        }
+        return dataset;
     }
-    return dataset;
-}
 
 }
