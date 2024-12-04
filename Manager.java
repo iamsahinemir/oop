@@ -5,12 +5,13 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.io.UnsupportedEncodingException;
+
 /**
  * Manager class for Manager.
  * It extends from Employee
  * 
  * @author Emir Esad Şahin
+ * @author Sezai Araplarlı
  */
 public class Manager extends Employee {
     public Manager(int e_id, String username, String password, String role, String name,
@@ -19,7 +20,11 @@ public class Manager extends Employee {
     }
 
     
-
+        /**
+         * DisplayProfile displays profile information.
+         * 
+         * @author Emir Esad Şahin
+         */
     @Override
     public void displayProfile() {
         System.out.println("\n=== MANAGER PROFILE ===");
@@ -27,7 +32,14 @@ public class Manager extends Employee {
         System.out.println("Phone: " + getPhoneNumber());
         System.out.println("Email: " + getEmail());
     }
-
+        /**
+         * updateOwnProfile updates profile information.
+         * Checks regex for phone number and email
+         * @param newPassword
+         * @param newPhone
+         * @param newPhone
+         * @author Emir Esad Şahin
+         */
     public void updateOwnProfile(String newPassword, String newPhone, String newEmail) {
         if (!newPhone.matches("\\d{10,15}")) {
             System.out.println("Invalid phone number.");
@@ -60,8 +72,9 @@ public class Manager extends Employee {
     }
     
     
-    /**
-     * 
+    /** 
+     * displayAllEmployees displays all employees and their informations without password from database
+     * with table format
      * @author Emir Esad Şahin
      */
     public void displayAllEmployees() {
@@ -95,7 +108,8 @@ public class Manager extends Employee {
     
     
     /**
-     * 
+     * displayEmployeesWithRole displays employees role by role from database
+     * Roles are engineer, manager, intern and technician
      * @param role
      * @author Emir Esad Şahin
      */
@@ -125,7 +139,7 @@ public class Manager extends Employee {
     
     
     /**
-     * 
+     * displayEmployeeByUsername displays employees informations using username from database
      * @param username
      * @author Emir Esad Şahin
      */
@@ -167,7 +181,16 @@ public class Manager extends Employee {
     
     
     
-
+    /**
+     * updateEmployeeNonProfile updates non profile informations in database
+     * These are name, surname and role
+     * These informations cannot empty. 
+     * @param e_id
+     * @param name
+     * @param surname
+     * @param role
+     * @author Emir Esad Şahin
+     */
     public void updateEmployeeNonProfile(int e_id, String name, String surname, String role) {
         try (Connection conn = DatabaseFacade.getConnection()) {
             String query = "UPDATE employees SET " +
@@ -176,7 +199,7 @@ public class Manager extends Employee {
                     (role != null ? "role = ?," : "");
             
             if (query.endsWith(",")) {
-                query = query.substring(0, query.length() - 1); // Son virgülü kaldır
+                query = query.substring(0, query.length() - 1); 
             }
             query += " WHERE e_id = ?";
             
@@ -207,10 +230,38 @@ public class Manager extends Employee {
 }
 }
     
+    /**
+     * hireEmployee adds new employee with non profile and profile informations in database
+     * These are username, password, role, name, surname, phone number, email, date of birth and date of start
+     * These informations cannot empty. 
+     * @param username
+     * @param password
+     * @param role
+     * @param name
+     * @param surname
+     * @param phone
+     * @param email
+     * @param dob is date of birth
+     * @param startDate is date of start
+     * @author Emir Esad Şahin
+     */
+    public void hireEmployee(String username, String role, String name, String surname, String phone, String email, String dob, String startDate) {
+        String defaultPassword = "defaultpassword"; // Varsayılan şifre
     
-
-    public void hireEmployee(String username, String password, String role, String name, String surname, String phone, String email, String dob, String startDate) {
         try {
+            // Boş değer kontrolü
+            if (username == null || username.trim().isEmpty() ||
+                role == null || role.trim().isEmpty() ||
+                name == null || name.trim().isEmpty() ||
+                surname == null || surname.trim().isEmpty() ||
+                phone == null || phone.trim().isEmpty() ||
+                email == null || email.trim().isEmpty() ||
+                dob == null || dob.trim().isEmpty() ||
+                startDate == null || startDate.trim().isEmpty()) {
+                System.out.println("All fields are required. Please ensure no field is left empty.");
+                return;
+            }
+    
             // Role doğrulama
             if (!role.matches("(?i)manager|technician|intern|engineer")) {
                 System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
@@ -234,38 +285,36 @@ public class Manager extends Employee {
                 System.out.println("Invalid date format for Date of Birth. Please use YYYY-MM-DD.");
                 return;
             }
-
+    
             if (!isValidDate(startDate)) {
                 System.out.println("Invalid date format for Start Date. Please use YYYY-MM-DD.");
                 return;
             }
-
+    
             // Bugünün tarihinden önce mi kontrol
             if (!isDateBeforeToday(dob)) {
                 System.out.println("Date of Birth cannot be in the future.");
                 return;
             }
-
+    
             if (!isDateBeforeToday(startDate)) {
                 System.out.println("Start Date cannot be in the future.");
                 return;
             }
-
+    
             // Doğum tarihi ile başlama tarihi arasındaki fark 18 yıldan az mı kontrol et
             if (!isBirthDateBeforeStartDate(dob, startDate)) {
                 System.out.println("Date of Birth cannot be greater than or equal to Start Date, and the employee must be at least 18 years old.");
                 return;
             }
-
-
-
     
+            // Eğer tüm kontroller geçilirse, veriyi ekle
             try (Connection conn = DatabaseFacade.getConnection()) {
                 String query = "INSERT INTO employees (username, password, role, name, surname, phone_number, email, dateofbirth, dateofstart) " +
                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setString(1, username);
-                stmt.setString(2, password);
+                stmt.setString(2, defaultPassword); // Varsayılan şifre atanıyor
                 stmt.setString(3, role);
                 stmt.setString(4, name);
                 stmt.setString(5, surname);
@@ -276,7 +325,7 @@ public class Manager extends Employee {
     
                 int rowsInserted = stmt.executeUpdate();
                 if (rowsInserted > 0) {
-                    System.out.println("Employee hired successfully.");
+                    System.out.println("Employee hired successfully with default password.");
                 } else {
                     System.out.println("Error hiring employee.");
                 }
@@ -287,96 +336,7 @@ public class Manager extends Employee {
             System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
-
-    /**
-     * 
-     * @param username
-     * @param role
-     * @param name
-     * @param surname
-     * @param phone
-     * @param email
-     * @param dob
-     * @param startDate
-     * 
-     * @author Sezai Araplarlı
-     * @author Emir Esad Şahin
-     */
-    public void hireEmployee(String username, String role, String name, String surname, String phone, String email, String dob, String startDate) {
-    String defaultPassword = "defaultpassword"; // Varsayılan şifre
-
-    try {
-        // Boş değer kontrolü
-        if (username == null || username.trim().isEmpty() ||
-            role == null || role.trim().isEmpty() ||
-            name == null || name.trim().isEmpty() ||
-            surname == null || surname.trim().isEmpty() ||
-            phone == null || phone.trim().isEmpty() ||
-            email == null || email.trim().isEmpty() ||
-            dob == null || dob.trim().isEmpty() ||
-            startDate == null || startDate.trim().isEmpty()) {
-            System.out.println("All fields are required. Please ensure no field is left empty.");
-            return;
-        }
-
-        // Role doğrulama
-        if (!role.matches("(?i)manager|technician|intern|engineer")) {
-            System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
-            return;
-        }
-
-        // Telefon doğrulama
-        if (!isValidPhone(phone)) {
-            System.out.println("Invalid phone number. Please enter a valid 11-digit number.");
-            return;
-        }
-
-        // E-posta doğrulama
-        if (!isValidEmail(email)) {
-            System.out.println("Invalid email format. Please enter a valid email.");
-            return;
-        }
-
-        // Tarih doğrulama
-        if (!isValidDate(dob) || !isValidDate(startDate)) {
-            System.out.println("Invalid date format. Please use YYYY-MM-DD.");
-            return;
-        }
-
-        // Doğum tarihi işe başlama tarihinden önce mi kontrol et
-        if (!isBirthDateBeforeStartDate(dob, startDate)) {
-            System.out.println("Date of birth cannot be greater than or equal to start date.");
-            return;
-        }
-
-        try (Connection conn = DatabaseFacade.getConnection()) {
-            String query = "INSERT INTO employees (username, password, role, name, surname, phone_number, email, dateofbirth, dateofstart) " +
-                           "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, username);
-            stmt.setString(2, defaultPassword); // Varsayılan şifre atanıyor
-            stmt.setString(3, role);
-            stmt.setString(4, name);
-            stmt.setString(5, surname);
-            stmt.setString(6, phone);
-            stmt.setString(7, email);
-            stmt.setString(8, dob);
-            stmt.setString(9, startDate);
-
-            int rowsInserted = stmt.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Employee hired successfully with default password.");
-            } else {
-                System.out.println("Error hiring employee.");
-            }
-        }
-    } catch (SQLException e) {
-        System.out.println("Error inserting employee: " + e.getMessage());
-    } catch (Exception e) {
-        System.out.println("An unexpected error occurred: " + e.getMessage());
-    }
-}
-
+    
 
     
     
@@ -413,11 +373,7 @@ public class Manager extends Employee {
         } catch (DateTimeParseException e) {
             return false;
         }
-    }
-    
-    
-    
-    
+    } 
     
     private boolean isBirthDateBeforeStartDate(String dob, String startDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -431,12 +387,6 @@ public class Manager extends Employee {
             return false;
         }
     }
-      
-    
-
-    
-    
-    
 
     public void fireEmployee(int employeeId) {
         if (employeeId == getE_id()) {
