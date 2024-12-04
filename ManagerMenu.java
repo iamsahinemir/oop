@@ -245,39 +245,92 @@ public class ManagerMenu {
     
 
     private void updateOwnProfile(Scanner scanner) {
-        System.out.print("Enter new password: ");
-        String newPassword = scanner.nextLine();
-        
-        String newPhone;
         while (true) {
-            System.out.print("Enter new phone number (numbers only): ");
-            newPhone = scanner.nextLine();
-            if (newPhone.matches("\\d+")) { // Telefon numarası sadece sayılar içermelidir
-                break;
-            } else {
-                System.out.println("Invalid phone number. Please enter numbers only.");
-            }
-        }
+            System.out.println("\n=== UPDATE OWN PROFILE ===");
+            System.out.println("1. Update Password");
+            System.out.println("2. Update Phone Number");
+            System.out.println("3. Update Email");
+            System.out.println("4. Back to Main Menu");
+            System.out.print("Enter your choice: ");
     
-        String newEmail;
-        while (true) {
-            System.out.print("Enter new email address: ");
-            newEmail = scanner.nextLine();
-            if (newEmail.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-                break;
-            } else {
-                System.out.println("Invalid email address. Please enter a valid email (e.g., example@example.com).");
-            }
-        }
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline character
     
-        try {
-            Utils.clearConsole();
-            manager.updateOwnProfile(newPassword, newPhone, newEmail);
-        } catch (Exception e) {
-            Utils.clearConsole();
-            System.out.println("Error updating profile: " + e.getMessage());
+                switch (choice) {
+                    case 1:
+                        // Update password
+                        System.out.print("Enter new password: ");
+                        String newPassword = scanner.nextLine();
+                        try {
+                            manager.updateOwnProfile(newPassword, manager.getPhoneNumber(), manager.getEmail());
+                            Utils.clearConsole();
+                            System.out.println("Password updated successfully.");
+                        } catch (Exception e) {
+                            Utils.clearConsole();
+                            System.out.println("Error updating password: " + e.getMessage());
+                        }
+                        break;
+    
+                    case 2:
+                        // Update phone number
+                        while (true) {
+                            System.out.print("Enter new phone number (11 digits): ");
+                            String newPhone = scanner.nextLine();
+                            if (newPhone.matches("\\d{11}")) {
+                                try {
+                                    manager.updateOwnProfile(manager.getPassword(), newPhone, manager.getEmail());
+                                    Utils.clearConsole();
+                                    System.out.println("Phone number updated successfully.");
+                                    break;
+                                } catch (Exception e) {
+                                    Utils.clearConsole();
+                                    System.out.println("Error updating phone number: " + e.getMessage());
+                                    break;
+                                }
+                            } else {
+                                System.out.println("Invalid phone number. Please enter 11 digits.");
+                            }
+                        }
+                        break;
+    
+                    case 3:
+                        // Update email
+                        while (true) {
+                            System.out.print("Enter new email address: ");
+                            String newEmail = scanner.nextLine();
+                            if (newEmail.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+                                try {
+                                    manager.updateOwnProfile(manager.getPassword(), manager.getPhoneNumber(), newEmail);
+                                    Utils.clearConsole();
+                                    System.out.println("Email updated successfully.");
+                                    break;
+                                } catch (Exception e) {
+                                    Utils.clearConsole();
+                                    System.out.println("Error updating email: " + e.getMessage());
+                                    break;
+                                }
+                            } else {
+                                System.out.println("Invalid email address. Please enter a valid email (e.g., example@example.com).");
+                            }
+                        }
+                        break;
+    
+                    case 4:
+                        // Back to main menu
+                        Utils.clearConsole();
+                        return;
+    
+                    default:
+                        System.out.println("Invalid choice. Please enter a valid option (1-4).");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine(); // Clear invalid input
+            }
         }
     }
+    
     
     
     
