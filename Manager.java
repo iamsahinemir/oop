@@ -17,16 +17,7 @@ public class Manager extends Employee {
                    String surname, String phoneNumber, String dateOfBirth, String dateOfStart, String email) {
         super(e_id, username, password, role, name, surname, phoneNumber, dateOfBirth, dateOfStart, email);
     }
-    // Kullanıcıdan alınan veriyi UTF-8 formatına dönüştürme
-    public String convertToUTF8(String input) {
-        try {
-            byte[] bytes = input.getBytes("UTF-8");
-            return new String(bytes, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            System.out.println("Error converting to UTF-8: " + e.getMessage());
-            return input; // Eğer hata olursa, orijinal veriyi döndür
-        }
-    }
+
     
 
     @Override
@@ -69,7 +60,10 @@ public class Manager extends Employee {
     }
     
     
-
+    /**
+     * 
+     * @author Emir Esad Şahin
+     */
     public void displayAllEmployees() {
         try (Connection conn = DatabaseFacade.getConnection()) {
             String query = "SELECT * FROM employees";
@@ -100,7 +94,11 @@ public class Manager extends Employee {
     }
     
     
-
+    /**
+     * 
+     * @param role
+     * @author Emir Esad Şahin
+     */
     public void displayEmployeesWithRole(String role) {
         try (Connection conn = DatabaseFacade.getConnection()) {
             String query = "SELECT * FROM employees WHERE role = ?";
@@ -126,15 +124,19 @@ public class Manager extends Employee {
     }
     
     
-
+    /**
+     * 
+     * @param username
+     * @author Emir Esad Şahin
+     */
     public void displayEmployeeByUsername(String username) {
-        // Kullanıcıdan alınan username'i UTF-8 formatına dönüştürme
-        username = convertToUTF8(username);
+
+
     
         try (Connection conn = DatabaseFacade.getConnection()) {
             String query = "SELECT e_id, name, surname, phone_number, email, role FROM employees WHERE username COLLATE utf8mb4_general_ci = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, username); // Kullanıcı adı parametresi olarak sorguya ekleniyor
+            stmt.setString(1, username); 
             
             ResultSet rs = stmt.executeQuery();
             
@@ -285,7 +287,22 @@ public class Manager extends Employee {
             System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
-public void hireEmployee(String username, String role, String name, String surname, String phone, String email, String dob, String startDate) {
+
+    /**
+     * 
+     * @param username
+     * @param role
+     * @param name
+     * @param surname
+     * @param phone
+     * @param email
+     * @param dob
+     * @param startDate
+     * 
+     * @author Sezai Araplarlı
+     * @author Emir Esad Şahin
+     */
+    public void hireEmployee(String username, String role, String name, String surname, String phone, String email, String dob, String startDate) {
     String defaultPassword = "defaultpassword"; // Varsayılan şifre
 
     try {
@@ -362,7 +379,7 @@ public void hireEmployee(String username, String role, String name, String surna
 
 
     
-    // Yardımcı doğrulama metotları
+    
     private boolean isValidPhone(String phone) {
         return phone.matches("\\d{10,15}");
     }
@@ -375,7 +392,7 @@ public void hireEmployee(String username, String role, String name, String surna
     private boolean isValidDate(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
-            LocalDate.parse(date, formatter); // Tarihi parse et
+            LocalDate.parse(date, formatter);
             return true;
         } catch (DateTimeParseException e) {
             System.out.println("Invalid date format. Please use YYYY-MM-DD.");
