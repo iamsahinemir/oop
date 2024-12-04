@@ -8,6 +8,13 @@ public class ManagerMenu {
         this.manager = manager;
     }
     
+    /**
+     * display the main manager menu using some simple system out commands and switch cases
+     * @author Emir Esad Şahin
+     * @author Tunahan Tuze
+     * @author Dilvin Aydın
+     * @author Zülal Sönmez
+     */
     public void displayMenu() {
         String reset = "\u001B[0m";          // Varsayılan renk
         String greenBold = "\033[1;32m";    // Kalın Yeşil
@@ -79,27 +86,31 @@ public class ManagerMenu {
                         break;
                     case 9:
                         System.out.println("Logging out...");
-                        Utils.clearConsole(); // Clear the console
-                        Main.main(new String[]{}); // Call the Main class's main method
+                        Utils.clearConsole();
+                        Main.main(new String[]{}); 
                         return;
                     default:
                         System.out.println("Invalid choice. Please enter a valid option (1-9).");
                 }
             } else {
                 System.out.println("Invalid input. Please enter a valid integer.");
-                scanner.nextLine(); // Clear the invalid input
+                scanner.nextLine(); 
             }
         }
     }
 
+    /**
+     * asks manager to enter a role to sort employees by their roles
+     * @author Emir Esad Şahin
+     */
     private void displayEmployeesByRole(Scanner scanner) {
         System.out.print("Enter role (e.g., technician, engineer, intern, manager): ");
         String role = scanner.nextLine();
     
-        // Geçerli rollerin listesi
+        //list of valid roles
         String[] validRoles = {"technician", "engineer", "intern", "manager"};
     
-        // Kullanıcı girişinin doğrulanması
+        
         boolean isValidRole = Arrays.stream(validRoles)
                                     .anyMatch(validRole -> validRole.equalsIgnoreCase(role));
                                     Utils.clearConsole();
@@ -109,7 +120,7 @@ public class ManagerMenu {
             return;
         }
     
-        // Geçerli bir rol ise veritabanında arama yap
+        
         try {
             manager.displayEmployeesWithRole(role);
         } catch (Exception e) {
@@ -118,7 +129,11 @@ public class ManagerMenu {
     }
     
     
-
+    /**
+     * asks manager to enter a employee username to display information
+     * provokes related method from manager class
+     * @author Emir Esad Şahin
+     */
     private void displayEmployeeByUsername(Scanner scanner) {
         System.out.print("Enter the username of the employee: ");
         String username = scanner.nextLine();
@@ -131,14 +146,20 @@ public class ManagerMenu {
         }
     }
     
-
+    /**
+     * asks manager to enter a employee ID to update information
+     * displays a menu that contains which fields can be updated
+     * according to choice provokes related method from manager class
+     * also checks test conditions
+     * @author Sezai Araplarlı
+     */
     private void updateEmployeeNonProfile(Scanner scanner) {
         System.out.print("Enter the employee ID to update: ");
         if (scanner.hasNextInt()) {
             int employeeId = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
     
-            // Alt menü
+            
             System.out.println("Select the field to update:");
             System.out.println("1. Name");
             System.out.println("2. Surname");
@@ -147,7 +168,7 @@ public class ManagerMenu {
     
             if (scanner.hasNextInt()) {
                 int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
+                scanner.nextLine();
                 String newValue;
     
                 switch (choice) {
@@ -175,15 +196,20 @@ public class ManagerMenu {
                 }
             } else {
                 System.out.println("Invalid input. Please enter a number.");
-                scanner.nextLine(); // Clear invalid input
+                scanner.nextLine();
             }
         } else {
             System.out.println("Invalid input. Please enter a valid employee ID.");
-            scanner.nextLine(); // Clear invalid input
+            scanner.nextLine();
 }
 }
     
-    
+    /**
+     * gets new employee's profile and non-profile fields and provokes hire employee method from manager class
+     * 
+     * @author Sezai Araplarlı
+     * @author Emir Esad Şahin
+     */
     private void hireNewEmployee(Scanner scanner) {
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
@@ -213,14 +239,18 @@ public class ManagerMenu {
         manager.hireEmployee(username, role, name, surname, phone, email, dob, startDate);
     }
     
-
+    /**
+     * get an input from user to fire user with employee ID
+     * checks if input ID is same with himself/herself so that the manager cannot fire himself/herself
+     * @author Sezai Araplarlı
+     */
     private void fireEmployee(Scanner scanner) {
         System.out.print("Enter the employee ID to fire: ");
         if (scanner.hasNextInt()) {
             int employeeId = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine(); 
     
-            // Manager'ın kendi ID'siyle karşılaştır
+            
             if (employeeId == manager.getE_id()) {
                 System.out.println("Error: You cannot fire yourself!");
                 return;
@@ -233,13 +263,18 @@ public class ManagerMenu {
             }
         } else {
             System.out.println("Invalid input. Please enter a valid employee ID.");
-            scanner.nextLine(); // Clear invalid input
+            scanner.nextLine();
         }
     }
     
     
     
-
+    /**
+     * display a little menu to manager
+     * and manager choose between operations to update own profile
+     * according to selection provokes related methods from manager class
+     * @author Sezai Araplarlı
+     */
     private void updateOwnProfile(Scanner scanner) {
         while (true) {
             System.out.println("\n=== UPDATE OWN PROFILE ===");
@@ -251,11 +286,11 @@ public class ManagerMenu {
     
             if (scanner.hasNextInt()) {
                 int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline character
+                scanner.nextLine(); 
     
                 switch (choice) {
                     case 1:
-                        // Update password
+                        
                         System.out.print("Enter new password: ");
                         String newPassword = scanner.nextLine();
                         try {
@@ -269,7 +304,7 @@ public class ManagerMenu {
                         break;
     
                     case 2:
-                        // Update phone number
+                        
                         while (true) {
                             System.out.print("Enter new phone number : ");
                             String newPhone = scanner.nextLine();
@@ -291,7 +326,7 @@ public class ManagerMenu {
                         break;
     
                     case 3:
-                        // Update email
+                        
                         while (true) {
                             System.out.print("Enter new email address: ");
                             String newEmail = scanner.nextLine();
@@ -322,7 +357,7 @@ public class ManagerMenu {
                 }
             } else {
                 System.out.println("Invalid input. Please enter a valid number.");
-                scanner.nextLine(); // Clear invalid input
+                scanner.nextLine();
             }
         }
     }
@@ -330,7 +365,17 @@ public class ManagerMenu {
     
     
     
-
+    /**
+     * input dataset size from user
+     * generate a dataset with input size (provokes algorithm class)
+     * sequentially starts algorithms by calling them from algorithm class
+     * at the end compares the sorting results of these 4 algorithms with java's collection sort to make sure algorithms work correctly 
+     * @param startTime start time for the algorithm 
+     * @param endTime   end time for the algorithm so we can substract these variables to find execution time
+     * @author Tunahan Tuze
+     * @author Dilvin Aydın
+     * @author Zülal Sönmez
+     */
     private void runSortingAlgorithms(Scanner scanner) {
         System.out.print("Enter the dataset size (between 1000 and 10000): ");
         if (scanner.hasNextInt()) {

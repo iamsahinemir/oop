@@ -43,6 +43,9 @@ public abstract class Employee {
         this.email = email;
     }
 
+    /**
+     * abstract method that will overrided 
+     */
     public abstract void displayProfile();
 
     public void updateProfile(String phoneNumber, String email) {
