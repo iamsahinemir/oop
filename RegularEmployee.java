@@ -11,7 +11,12 @@ public class RegularEmployee extends Employee {
         super(e_id, username, password, role, name, surname, phoneNumber, dateOfBirth, dateOfStart, email);
     }
 
-    @Override // bak
+    /**
+     * override from abstract employee class
+     * to display regular employee's profile
+     * @author Emir Esad Şahin
+     */
+    @Override
     public void displayProfile() {
         System.out.println("\n=== EMPLOYEE PROFILE ===");
         System.out.println(String.format("%-20s : %s", "Name", getName()));
@@ -23,9 +28,17 @@ public class RegularEmployee extends Employee {
     }
     
 
+    /**
+     * checks the entered input first
+     * then it sets password, phone number and email in database to newly entered inputs
+     * @param newPassword       entered password to be updated
+     * @param newPhoneNumber    entered phone number to be updated
+     * @param newEmail          entered email to be updated 
+     * @author Emir Esad Şahin
+     */
     public void updateProfile(String newPassword, String newPhoneNumber, String newEmail) {
         try {
-            // Validating inputs
+
             if (newPhoneNumber != null && !isValidPhoneNumber(newPhoneNumber)) {
                 System.out.println("Invalid phone number. Please ensure it contains only numbers and is 11 digits long.");
                 return;
@@ -36,7 +49,6 @@ public class RegularEmployee extends Employee {
                 return;
             }
     
-            // Güncellemeleri yapmadan önce null olmayan değerlerle kontrol
             if (newPassword != null) {
                 setPassword(newPassword);
             }
@@ -47,7 +59,6 @@ public class RegularEmployee extends Employee {
                 setEmail(newEmail);
             }
     
-            // Dinamik SQL Sorgusu Hazırlama
             StringBuilder queryBuilder = new StringBuilder("UPDATE employees SET ");
             boolean isFirst = true;
     
@@ -66,7 +77,7 @@ public class RegularEmployee extends Employee {
             }
             queryBuilder.append(" WHERE e_id = ?");
     
-            // Veritabanı güncellemesi
+
             try (Connection conn = DatabaseFacade.getConnection();
                  PreparedStatement stmt = conn.prepareStatement(queryBuilder.toString())) {
     
@@ -96,19 +107,27 @@ public class RegularEmployee extends Employee {
             System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
-    
-    // Telefon numarasının geçerli olup olmadığını kontrol eden metod
+
+    /**
+     * a regex to format phone number between 10 and 15 digits
+     * @param phoneNumber
+     * @return it means that the parameter and the pattern matches so it returns true
+     */
     private boolean isValidPhoneNumber(String phoneNumber) {
-        // Telefon numarası yalnızca 10 veya 11 haneli olmalıdır
+        
         String phoneRegex = "^\\d{10,15}$";
         Pattern pattern = Pattern.compile(phoneRegex);
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
     }
 
-    // E-posta adresinin geçerli olup olmadığını kontrol eden metod
+    /**
+     * a regex to format email type blabla@blabla.bla
+     * @param email entered email from regular employee to update own profile
+     * @return it means that the parameter and the pattern matches so it returns true
+     */
     private boolean isValidEmail(String email) {
-        // Geçerli bir e-posta formatı
+        
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
