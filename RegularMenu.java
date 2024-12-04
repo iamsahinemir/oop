@@ -27,14 +27,15 @@ public class RegularMenu {
 
                 switch (choice) {
                     case 1:
+                        Utils.clearConsole();
                         employee.displayProfile();
                         break;
                     case 2:
+                        Utils.clearConsole();
                         updateProfile(scanner);
                         break;
                     case 3:
                         System.out.println("Logging out...");
-                        Utils.clearConsole(); // Clear the console
                         Main.main(new String[]{}); // Call the Main class's main method
                         return;  // Exiting the menu and going back to the login screen
                     default:
@@ -54,7 +55,8 @@ public class RegularMenu {
         String newPhoneNumber = scanner.nextLine();
         System.out.print("Enter new email (or leave blank to skip): ");
         String newEmail = scanner.nextLine();
-
+        Utils.clearConsole();
+        
         employee.updateProfile(
                 newPassword.isEmpty() ? null : newPassword,
                 newPhoneNumber.isEmpty() ? null : newPhoneNumber,
