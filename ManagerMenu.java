@@ -189,9 +189,6 @@ public class ManagerMenu {
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
     
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-    
         System.out.print("Enter role (manager, technician, intern, engineer): ");
         String role = scanner.nextLine();
     
@@ -214,7 +211,7 @@ public class ManagerMenu {
         String startDate = scanner.nextLine();
     
         Utils.clearConsole();
-        manager.hireEmployee(username, password, role, name, surname, phone, email, dob, startDate);
+        manager.hireEmployee(username, role, name, surname, phone, email, dob, startDate);
     }
     
 
