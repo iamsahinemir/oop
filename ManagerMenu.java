@@ -1,5 +1,3 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -24,13 +22,17 @@ public class ManagerMenu {
         String whiteBold = "\033[1;37m";    // Kalın Beyaz
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println(greenBold + "\n=== MANAGER MENU ===" + reset);
+
+            String name = Authentication.getLoggedInName();
+            String surname = Authentication.getLoggedInSurname();
+
+            System.out.println(greenBold + "\n=== MANAGER MENU - " + name + " " + surname + " ===" + reset);
             System.out.println(blue + "1. Display All Employees" + reset);
             System.out.println(cyan + "2. Display Employees by Role" + reset);
             System.out.println(purple + "3. Display Employee by Username" + reset);
             System.out.println(yellow + "4. Update Employee Non-Profile Fields" + reset);
-            System.out.println(red + "5. Hire New Employee" + reset);
-            System.out.println(greenBold + "6. Fire Employee" + reset);
+            System.out.println(greenBold + "5. Hire New Employee" + reset);
+            System.out.println(red + "6. Fire Employee" + reset);
             System.out.println(blueBold + "7. Update Own Profile" + reset);
             System.out.println(magenta + "8. Run Sorting Algorithms" + reset);
             System.out.println(cyanBold + "9. Logout" + reset);
@@ -154,12 +156,52 @@ public class ManagerMenu {
                     name.isEmpty() ? null : name,
                     surname.isEmpty() ? null : surname,
                     role.isEmpty() ? null : role);
+            // Alt menü
+            System.out.println("Select the field to update:");
+            System.out.println("1. Name");
+            System.out.println("2. Surname");
+            System.out.println("3. Role");
+            System.out.print("Enter your choice: ");
+    
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+                String newValue;
+    
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter new name: ");
+                        newValue = scanner.nextLine();
+                        manager.updateEmployeeNonProfile(employeeId, newValue, null, null);
+                        break;
+                    case 2:
+                        System.out.print("Enter new surname: ");
+                        newValue = scanner.nextLine();
+                        manager.updateEmployeeNonProfile(employeeId, null, newValue, null);
+                        break;
+                    case 3:
+                        System.out.print("Enter new role (manager, technician, intern, engineer): ");
+                        newValue = scanner.nextLine();
+                        if (!newValue.matches("(?i)manager|technician|intern|engineer")) {
+                            System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
+                            return;
+                        }
+                        manager.updateEmployeeNonProfile(employeeId, null, null, newValue);
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please select a valid option.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Clear invalid input
+            }
         } else {
             Utils.clearConsole();
             System.out.println("Invalid input. Please enter a valid employee ID.");
             scanner.nextLine(); // Clear invalid input
         }
     }
+    
     
     private void hireNewEmployee(Scanner scanner) {
         System.out.print("Enter username: ");
@@ -201,6 +243,13 @@ public class ManagerMenu {
             int employeeId = scanner.nextInt();
             scanner.nextLine(); // Consume newline
             
+    
+            // Manager'ın kendi ID'siyle karşılaştır
+            if (employeeId == manager.getE_id()) {
+                System.out.println("Error: You cannot fire yourself!");
+                return;
+            }
+    
             try {
                 manager.fireEmployee(employeeId);
             } catch (Exception e) {
@@ -213,6 +262,7 @@ public class ManagerMenu {
             scanner.nextLine(); // Clear invalid input
         }
     }
+    
     
 
     private void updateOwnProfile(Scanner scanner) {
@@ -304,6 +354,7 @@ public class ManagerMenu {
             endTime = System.nanoTime();
             long collectionsExecutionTime = endTime - startTime;
             
+    
             // Verify correctness
             boolean isEqualShell = Arrays.equals(shellData, collectionsData);
             boolean isEqualInsertionforinsertion = Arrays.equals(insertionData, collectionsData);
