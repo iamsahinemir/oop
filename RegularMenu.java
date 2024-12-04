@@ -95,7 +95,7 @@ public class RegularMenu {
                         String newPassword = scanner.nextLine().trim();
                         if (!newPassword.isEmpty()) {
                             employee.updateProfile(newPassword, null, null);
-                            System.out.println("Password updated successfully!");
+
                         } else {
                             System.out.println("Password cannot be empty.");
                         }
@@ -106,7 +106,7 @@ public class RegularMenu {
                         String newPhoneNumber = scanner.nextLine().trim();
                         if (!newPhoneNumber.isEmpty()) {
                             employee.updateProfile(null, newPhoneNumber, null);
-                            System.out.println("Phone number updated successfully!");
+
                         } else {
                             System.out.println("Phone number cannot be empty.");
                         }
@@ -117,7 +117,7 @@ public class RegularMenu {
                         String newEmail = scanner.nextLine().trim();
                         if (!newEmail.isEmpty()) {
                             employee.updateProfile(null, null, newEmail);
-                            System.out.println("Email updated successfully!");
+
                         } else {
                             System.out.println("Email cannot be empty.");
                         }

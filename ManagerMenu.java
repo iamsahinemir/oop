@@ -41,16 +41,16 @@ public class ManagerMenu {
             System.out.println(cyanBold + "9. Logout" + reset);
             System.out.print(whiteBold + "Enter your choice: " + reset);
     
-            // Kullanıcı girdisini al
+
             String input = scanner.nextLine().trim();
     
-            // Geçerli giriş kontrolü
+
             if (!input.matches("[1-9]")) {
                 System.out.println("Invalid input. Please enter a number between 1 and 9.");
-                continue; // Geçersiz girişte menüye geri dön
+                continue; 
             }
     
-            // Geçerli giriş işleme alınır
+
             int choice = Integer.parseInt(input);
     
             switch (choice) {
@@ -318,21 +318,21 @@ public class ManagerMenu {
             System.out.println("4. Back to Main Menu");
             System.out.print("Enter your choice: ");
     
-            // Kullanıcı girdisini al
+     
             String input = scanner.nextLine().trim();
     
-            // Girdi doğrulaması
+   
             if (!input.matches("[1-4]")) {
                 System.out.println("Invalid choice. Please enter a number between 1 and 4.");
-                continue; // Menüye geri dön
+                continue;
             }
     
-            // Girdi geçerliyse işle
+
             int choice = Integer.parseInt(input);
     
             switch (choice) {
                 case 1:
-                    // Şifre güncelleme
+                    
                     System.out.print("Enter new password: ");
                     String newPassword = scanner.nextLine().trim();
                     if (newPassword.isEmpty()) {
@@ -350,7 +350,7 @@ public class ManagerMenu {
                     break;
     
                 case 2:
-                    // Telefon numarası güncelleme
+                
                     System.out.print("Enter new phone number: ");
                     String newPhone = scanner.nextLine().trim();
                     if (!newPhone.matches("\\d{10,15}")) {
@@ -368,7 +368,7 @@ public class ManagerMenu {
                     break;
     
                 case 3:
-                    // E-posta adresi güncelleme
+
                     System.out.print("Enter new email address: ");
                     String newEmail = scanner.nextLine().trim();
                     if (!newEmail.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
@@ -386,7 +386,7 @@ public class ManagerMenu {
                     break;
     
                 case 4:
-                    // Ana menüye dön
+
                     Utils.clearConsole();
                     return;
     
