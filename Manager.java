@@ -5,7 +5,12 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.io.UnsupportedEncodingException;
-
+/**
+ * Manager class for Manager.
+ * It extends from Employee
+ * 
+ * @author Emir Esad Şahin
+ */
 public class Manager extends Employee {
     public Manager(int e_id, String username, String password, String role, String name,
                    String surname, String phoneNumber, String dateOfBirth, String dateOfStart, String email) {

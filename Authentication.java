@@ -1,9 +1,17 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+/**
+ * Authentication class checks variables from database for user login.
+ * 
+ * 
+ * @author Emir Esad Şahin
+ */
 public class Authentication {
-
+    /**
+     * This takes user input for the size of the array to generate.
+     *@return name, surname, username, password, role.
+     */
     private static String loggedInName;
     private static String loggedInSurname;
 
@@ -11,15 +19,30 @@ public class Authentication {
         loggedInName = name;
         loggedInSurname = surname;
     }
-
+    /**
+     * It collects loggedınname
+     *
+     * @param getLoggedInName
+     * @return  loggedInName
+     */
     public static String getLoggedInName() {
         return loggedInName;
     }
-
+    /**
+     * It collects loggedınsurname
+     *
+     * @param getLoggedInSurname
+     * @return  loggedInSurname
+     */
     public static String getLoggedInSurname() {
         return loggedInSurname;
     }
-
+    /**
+     * It collects username, password and role
+     *
+     * @param authenticate
+     * @return  role
+     */
     public String authenticate(String username, String password) {
         try (Connection conn = DatabaseFacade.getConnection()) {
             String query = "SELECT username, password, role, name, surname FROM employees WHERE username = ? AND password = ?";
@@ -35,5 +58,5 @@ public class Authentication {
             System.out.println("Database connection error: " + e.getMessage());
         }
         return "invalid";
-    }//tekrar
+    }
 }

@@ -65,14 +65,34 @@ public abstract class Employee {
     }
 
 
-    public void setE_id(int e_id) { this.e_id = e_id; }
-    public void setUsername(String username) { this.username = username; }
-    public void setPassword(String password) { this.password = password; }
-    public void setRole(String role) { this.role = role; }
-    public void setName(String name) { this.name = name; }
-    public void setSurname(String surname) { this.surname = surname; }
-    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
-    public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
-    public void setDateOfStart(String dateOfStart) { this.dateOfStart = dateOfStart; }
-    public void setEmail(String email) { this.email = email; }
+    public void setE_id(int e_id) { 
+        this.e_id = e_id; 
+    }
+    public void setUsername(String username) { 
+        this.username = username; 
+    }
+    public void setPassword(String password) { 
+        this.password = password; 
+    }
+    public void setRole(String role) { 
+        this.role = role; 
+    }
+    public void setName(String name) { 
+        this.name = name; 
+    }
+    public void setSurname(String surname) { 
+        this.surname = surname; 
+    }
+    public void setPhoneNumber(String phoneNumber) { 
+        this.phoneNumber = phoneNumber; 
+    }
+    public void setDateOfBirth(String dateOfBirth) { 
+        this.dateOfBirth = dateOfBirth; 
+    }
+    public void setDateOfStart(String dateOfStart) { 
+        this.dateOfStart = dateOfStart; 
+    }
+    public void setEmail(String email) { 
+        this.email = email; 
+    }
 }

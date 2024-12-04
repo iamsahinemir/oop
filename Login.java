@@ -2,8 +2,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
-
+/**
+ * Login class provides to the user for login to system .
+ * 
+ * 
+ * @author Emir Esad Şahin
+ */
 public class Login {
+    /**
+     * void is menu screen
+     * There are colors
+     * Checks roles
+     * Checks defaultpassword situation
+     * Checks authentication
+     */
     public void start() {
         Scanner scanner = new Scanner(System.in);
         String RESET = "\u001B[0m";
@@ -23,7 +35,7 @@ public class Login {
         if (password.equals("defaultpassword")) {
             System.out.println(RED + "You are using the default password. Please change your password." + RESET);
             changePassword(username);
-            start(); // Şifre değiştirme sonrası giriş ekranına dön
+            start();
             return;
         }
 
@@ -48,7 +60,10 @@ public class Login {
             start();
         }
     }
-
+    /**
+     * Collects Manager details from database
+     * @return Manager
+     */
     private Manager getManagerDetails(String username) {
         try (Connection conn = DatabaseFacade.getConnection()) {
             String query = "SELECT * FROM employees WHERE username = ?";
@@ -74,7 +89,10 @@ public class Login {
         }
         return null;
     }
-
+    /**
+     * Collects Employee details from database
+     * @return Regular Employee
+     */
     private RegularEmployee getEmployeeDetails(String username) {
         try (Connection conn = DatabaseFacade.getConnection()) {
             String query = "SELECT * FROM employees WHERE username = ?";
@@ -100,7 +118,11 @@ public class Login {
         }
         return null;
     }
-
+    /**
+     * If there is defaultpassword situation, changes to new password
+     * Checks username and password
+     * @return Regular Employee
+     */
     private void changePassword(String username) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your new password: ");
