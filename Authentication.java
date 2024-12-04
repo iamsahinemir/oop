@@ -22,7 +22,7 @@ public class Authentication {
     /**
      * It collects loggedınname
      *
-     * @param getLoggedInName
+     * 
      * @return  loggedInName
      */
     public static String getLoggedInName() {
@@ -31,7 +31,7 @@ public class Authentication {
     /**
      * It collects loggedınsurname
      *
-     * @param getLoggedInSurname
+     * 
      * @return  loggedInSurname
      */
     public static String getLoggedInSurname() {
@@ -40,7 +40,8 @@ public class Authentication {
     /**
      * It collects username, password and role
      *
-     * @param authenticate
+     * @param username
+     * @param password
      * @return  role
      */
     public String authenticate(String username, String password) {
