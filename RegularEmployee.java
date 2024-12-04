@@ -71,7 +71,7 @@ public class RegularEmployee extends Employee {
     // Telefon numarasının geçerli olup olmadığını kontrol eden metod
     private boolean isValidPhoneNumber(String phoneNumber) {
         // Telefon numarası yalnızca 10 veya 11 haneli olmalıdır
-        String phoneRegex = "^\\d{10,11}$";
+        String phoneRegex = "^\\d{10,15}$";
         Pattern pattern = Pattern.compile(phoneRegex);
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();

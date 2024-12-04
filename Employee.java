@@ -1,3 +1,7 @@
+/**
+ * An abstract class to derive RegularEmployee and Manager class
+ * @author Sezai Araplarlı
+ */
 public abstract class Employee {
     protected int e_id;
     protected String username;
@@ -10,6 +14,21 @@ public abstract class Employee {
     protected String dateOfStart;
     protected String email;
 
+    /**
+     * @param e_id          Employee ID
+     * @param username      Employee's username
+     * @param password      Employee's password
+     * @param role          Employee's role (manager, technician, intern, engineer)
+     * @param name          Employee's name
+     * @param surname       Employee's surname
+     * @param phoneNumber   Employee's phone number
+     * @param dateOfBirth   Employee's birth date 
+     * @param dateOfStart   Employee's start date 
+     * @param email         Employee's e-mail
+     * Abstract 
+     * 
+     * @author Sezai Araplarlı
+     */
     public Employee(int e_id, String username, String password, String role, String name,
                     String surname, String phoneNumber, String dateOfBirth, String dateOfStart, String email) {
         this.e_id = e_id;
