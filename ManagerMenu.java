@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.Scanner;
-
 public class ManagerMenu {
     private Manager manager;
 
@@ -16,17 +15,17 @@ public class ManagerMenu {
      * @author Zülal Sönmez
      */
     public void displayMenu() {
-        String reset = "\u001B[0m";          // Varsayılan renk
-        String greenBold = "\033[1;32m";    // Kalın Yeşil
-        String blue = "\033[34m";           // Mavi
-        String cyan = "\033[36m";           // Camgöbeği
-        String purple = "\033[35m";         // Mor
-        String yellow = "\033[33m";         // Sarı
-        String red = "\033[31m";            // Kırmızı
-        String blueBold = "\033[1;34m";     // Kalın Mavi
-        String magenta = "\033[35m";        // Magenta
-        String cyanBold = "\033[1;36m";     // Kalın Camgöbeği
-        String whiteBold = "\033[1;37m";    // Kalın Beyaz
+        String reset = "\u001B[0m";          
+        String greenBold = "\033[1;32m";    
+        String blue = "\033[34m";           
+        String cyan = "\033[36m";           
+        String purple = "\033[35m";         
+        String yellow = "\033[33m";         
+        String red = "\033[31m";            
+        String blueBold = "\033[1;34m";     
+        String magenta = "\033[35m";        
+        String cyanBold = "\033[1;36m";     
+        String whiteBold = "\033[1;37m";    
         Scanner scanner = new Scanner(System.in);
         while (true) {
 
@@ -242,6 +241,7 @@ public class ManagerMenu {
     /**
      * get an input from user to fire user with employee ID
      * checks if input ID is same with himself/herself so that the manager cannot fire himself/herself
+     * @author Emir Esad Şahin
      * @author Sezai Araplarlı
      */
     private void fireEmployee(Scanner scanner) {

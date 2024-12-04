@@ -25,49 +25,78 @@ public class RegularEmployee extends Employee {
 
     public void updateProfile(String newPassword, String newPhoneNumber, String newEmail) {
         try {
-            // Validating phone number
-            if (!isValidPhoneNumber(newPhoneNumber)) {
+            // Validating inputs
+            if (newPhoneNumber != null && !isValidPhoneNumber(newPhoneNumber)) {
                 System.out.println("Invalid phone number. Please ensure it contains only numbers and is 11 digits long.");
                 return;
             }
-
-            // Validating email
-            if (!isValidEmail(newEmail)) {
+    
+            if (newEmail != null && !isValidEmail(newEmail)) {
                 System.out.println("Invalid email address. Please provide a valid email (e.g., example@example.com).");
                 return;
             }
-
-            setPassword(newPassword);
-            setPhoneNumber(newPhoneNumber);
-            setEmail(newEmail);
-            System.out.println("Profile updated successfully.");
-
-            // Veritabanına güncelleme işlemi
-            try (Connection conn = DatabaseFacade.getConnection()) {
-                String query = "UPDATE employees SET password = ?, phone_number = ?, email = ? WHERE e_id = ?";
-                PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setString(1, newPassword != null ? newPassword : getPassword());
-                stmt.setString(2, newPhoneNumber != null ? newPhoneNumber : getPhoneNumber());
-                stmt.setString(3, newEmail != null ? newEmail : getEmail());
-                stmt.setInt(4, getE_id());
-
+    
+            // Güncellemeleri yapmadan önce null olmayan değerlerle kontrol
+            if (newPassword != null) {
+                setPassword(newPassword);
+            }
+            if (newPhoneNumber != null) {
+                setPhoneNumber(newPhoneNumber);
+            }
+            if (newEmail != null) {
+                setEmail(newEmail);
+            }
+    
+            // Dinamik SQL Sorgusu Hazırlama
+            StringBuilder queryBuilder = new StringBuilder("UPDATE employees SET ");
+            boolean isFirst = true;
+    
+            if (newPassword != null) {
+                queryBuilder.append("password = ?");
+                isFirst = false;
+            }
+            if (newPhoneNumber != null) {
+                if (!isFirst) queryBuilder.append(", ");
+                queryBuilder.append("phone_number = ?");
+                isFirst = false;
+            }
+            if (newEmail != null) {
+                if (!isFirst) queryBuilder.append(", ");
+                queryBuilder.append("email = ?");
+            }
+            queryBuilder.append(" WHERE e_id = ?");
+    
+            // Veritabanı güncellemesi
+            try (Connection conn = DatabaseFacade.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(queryBuilder.toString())) {
+    
+                int paramIndex = 1;
+                if (newPassword != null) {
+                    stmt.setString(paramIndex++, newPassword);
+                }
+                if (newPhoneNumber != null) {
+                    stmt.setString(paramIndex++, newPhoneNumber);
+                }
+                if (newEmail != null) {
+                    stmt.setString(paramIndex++, newEmail);
+                }
+                stmt.setInt(paramIndex, getE_id());
+    
                 int rowsUpdated = stmt.executeUpdate();
                 if (rowsUpdated > 0) {
-                    System.out.println("Profile updated successfully in database.");
+                    System.out.println("Profile updated successfully in the database.");
                 } else {
-                    System.out.println("Failed to update profile in database.");
+                    System.out.println("Failed to update profile in the database.");
                 }
             } catch (SQLException e) {
-                System.out.println("Error updating profile in database: " + e.getMessage());
+                System.out.println("Error updating profile in the database: " + e.getMessage());
             }
-
-        } catch (SQLException e) {
-            System.out.println("Error updating profile: " + e.getMessage());
+    
         } catch (Exception e) {
             System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
-
+    
     // Telefon numarasının geçerli olup olmadığını kontrol eden metod
     private boolean isValidPhoneNumber(String phoneNumber) {
         // Telefon numarası yalnızca 10 veya 11 haneli olmalıdır
