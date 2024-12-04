@@ -26,7 +26,7 @@ public class ManagerMenu {
             String name = Authentication.getLoggedInName();
             String surname = Authentication.getLoggedInSurname();
 
-            System.out.println(greenBold + "\n=== MANAGER MENU - " + name + " " + surname + " ===" + reset);
+            System.out.println(greenBold + "\n=== MANAGER MENU - " + manager.getName() + " " + manager.getSurname() + " ===" + reset);
             System.out.println(blue + "1. Display All Employees" + reset);
             System.out.println(cyan + "2. Display Employees by Role" + reset);
             System.out.println(purple + "3. Display Employee by Username" + reset);

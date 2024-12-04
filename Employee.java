@@ -33,16 +33,37 @@ public abstract class Employee {
     }
 
     // Getters and Setters
-    public int getE_id() { return e_id; }
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
-    public String getRole() { return role; }
-    public String getName() { return name; }
-    public String getSurname() { return surname; }
-    public String getPhoneNumber() { return phoneNumber; }
-    public String getDateOfBirth() { return dateOfBirth; }
-    public String getDateOfStart() { return dateOfStart; }
-    public String getEmail() { return email; }
+    public int getE_id() { 
+        return e_id; 
+    }
+    public String getUsername() { 
+        return username; 
+    }
+    public String getPassword() { 
+        return password; 
+    }
+    public String getRole() { 
+        return role; 
+    }
+    public String getName() { 
+        return name; 
+    }
+    public String getSurname() { 
+        return surname; 
+    }
+    public String getPhoneNumber() { 
+        return phoneNumber; 
+    }
+    public String getDateOfBirth() { 
+        return dateOfBirth; 
+    }
+    public String getDateOfStart() { 
+        return dateOfStart; 
+    }
+    public String getEmail() { 
+        return email; 
+    }
+
 
     public void setE_id(int e_id) { this.e_id = e_id; }
     public void setUsername(String username) { this.username = username; }

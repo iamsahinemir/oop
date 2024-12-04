@@ -15,7 +15,7 @@ public class RegularMenu {
         String purple = "\033[35m";
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println(red + "\n=== EMPLOYEE MENU ===" + reset);
+            System.out.println(red + "\n=== EMPLOYEE MENU ===" + employee.getName()+" "+employee.getSurname()+ " ===" +reset);
             System.out.println(blue + "1. Display Profile" + reset);
             System.out.println(cyanBold +"2. Update Profile"+ reset);
             System.out.println(purple +"3. Logout"+ reset);
