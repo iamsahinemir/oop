@@ -13,8 +13,6 @@ import java.sql.DriverManager;
      * USER is root for root user
      * PASSWORD is password for database. There is no password.
      *
-     * @param DatabaseFacade
-     * @return  DriverManager.getConnection
      */
 public class DatabaseFacade {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/firm_management_11?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";

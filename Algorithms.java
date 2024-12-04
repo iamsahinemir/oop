@@ -309,8 +309,7 @@ public class Algorithms {
     }
    /**
      * This performs insertion sort on the input array.
-     * 
-     * @param insertionarray the array to be sorted
+     * @param insertionArray insertion array
      * @return the sorted array
      * @author Tunahan Tuze
      */
@@ -395,8 +394,10 @@ public class Algorithms {
      /**
      * This compares a radix sorted array and a list to check for equality.
      * 
-     * @param Radix_Arrayy the radix sorted array
-     * @param connection_Array the list to compare against
+     *  Radix_Arrayy the radix sorted array
+     *  connection_Array the list to compare against
+     * @param Heap_Arrayy heap array
+     * @param connection_Array connection array
      * @return true if the array and list are equal, otherwise otherwise
      * @author Tunahan Tuze 
      */

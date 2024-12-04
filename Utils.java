@@ -3,7 +3,7 @@ public class Utils {
     /**
      * a method that clears terminal/console
      * for better user experience
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     public static void clearConsole() {
         try {

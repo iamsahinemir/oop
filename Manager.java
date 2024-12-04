@@ -35,9 +35,9 @@ public class Manager extends Employee {
         /**
          * updateOwnProfile updates profile information.
          * Checks regex for phone number and email
-         * @param newPassword
-         * @param newPhone
-         * @param newPhone
+         * @param newPassword   updated password
+         * @param newPhone updated phone number
+         * @param newEmail updated email
          * @author Emir Esad Sahin
          */
     public void updateOwnProfile(String newPassword, String newPhone, String newEmail) {
@@ -110,7 +110,7 @@ public class Manager extends Employee {
     /**
      * displayEmployeesWithRole displays employees role by role from database
      * Roles are engineer, manager, intern and technician
-     * @param role
+     * @param role role of employee
      * @author Emir Esad Sahin
      */
     public void displayEmployeesWithRole(String role) {
@@ -140,7 +140,7 @@ public class Manager extends Employee {
     
     /**
      * displayEmployeeByUsername displays employees informations using username from database
-     * @param username
+     * @param username username of employee
      * @author Emir Esad Sahin
      */
     public void displayEmployeeByUsername(String username) {
@@ -185,10 +185,10 @@ public class Manager extends Employee {
      * updateEmployeeNonProfile updates non profile informations in database
      * These are name, surname and role
      * These informations cannot empty. 
-     * @param e_id
-     * @param name
-     * @param surname
-     * @param role
+     * @param e_id employee id
+     * @param name emplyee name
+     * @param surname employee surname
+     * @param role employee role
      * @author Emir Esad Sahin
      */
     public void updateEmployeeNonProfile(int e_id, String name, String surname, String role) {
@@ -234,13 +234,12 @@ public class Manager extends Employee {
      * hireEmployee adds new employee with non profile and profile informations in database
      * These are username, password, role, name, surname, phone number, email, date of birth and date of start
      * These informations cannot empty. 
-     * @param username
-     * @param password
-     * @param role
-     * @param name
-     * @param surname
-     * @param phone
-     * @param email
+     * @param username employe username
+     * @param role employee role
+     * @param name employee name
+     * @param surname employee surname
+     * @param phone employee phone number
+     * @param email employee email
      * @param dob is date of birth
      * @param startDate is date of start
      * @author Emir Esad Sahin

@@ -40,8 +40,8 @@ public class Authentication {
     /**
      * It collects username, password and role
      *
-     * @param username
-     * @param password
+     * @param username username of employee
+     * @param password password of employee
      * @return  role
      */
     public String authenticate(String username, String password) {
