@@ -210,7 +210,13 @@ public class ManagerMenu {
         if (scanner.hasNextInt()) {
             int employeeId = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-            
+    
+            // Manager'ın kendi ID'siyle karşılaştır
+            if (employeeId == manager.getE_id()) {
+                System.out.println("Error: You cannot fire yourself!");
+                return;
+            }
+    
             try {
                 manager.fireEmployee(employeeId);
             } catch (Exception e) {
@@ -221,6 +227,7 @@ public class ManagerMenu {
             scanner.nextLine(); // Clear invalid input
         }
     }
+    
     
 
     private void updateOwnProfile(Scanner scanner) {
