@@ -161,21 +161,30 @@ public class Manager extends Employee {
     
 
     public void updateEmployeeNonProfile(int e_id, String name, String surname, String role) {
-        // Role doğrulaması
-        if (role != null && !role.matches("(?i)manager|technician|intern|engineer")) {
-            System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
-            return;
-        }
-    
         try (Connection conn = DatabaseFacade.getConnection()) {
-            String query = "UPDATE employees SET name = ?, surname = ?, role = ? WHERE e_id = ?";
+            String query = "UPDATE employees SET " +
+                    (name != null ? "name = ?," : "") +
+                    (surname != null ? "surname = ?," : "") +
+                    (role != null ? "role = ?," : "");
+            
+            if (query.endsWith(",")) {
+                query = query.substring(0, query.length() - 1); // Son virgülü kaldır
+            }
+            query += " WHERE e_id = ?";
+            
             PreparedStatement stmt = conn.prepareStatement(query);
     
-            // Null değerler için önceki değeri koruyarak güncelleme
-            stmt.setString(1, name != null && !name.isEmpty() ? name : null);
-            stmt.setString(2, surname != null && !surname.isEmpty() ? surname : null);
-            stmt.setString(3, role != null && !role.isEmpty() ? role : null);
-            stmt.setInt(4, e_id);
+            int parameterIndex = 1;
+            if (name != null) {
+                stmt.setString(parameterIndex++, name);
+            }
+            if (surname != null) {
+                stmt.setString(parameterIndex++, surname);
+            }
+            if (role != null) {
+                stmt.setString(parameterIndex++, role);
+            }
+            stmt.setInt(parameterIndex, e_id);
     
             int rowsUpdated = stmt.executeUpdate();
             if (rowsUpdated > 0) {
@@ -189,6 +198,7 @@ public class Manager extends Employee {
             System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
+    
     
 
     public void hireEmployee(String username, String password, String role, String name, String surname, String phone, String email, String dob, String startDate) {

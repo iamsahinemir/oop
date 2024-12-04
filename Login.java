@@ -23,6 +23,8 @@ public class Login {
         if (role.equals("manager")) {
             Manager manager = getManagerDetails(username);
             if (manager != null) {
+                
+
                 System.out.println(GREEN + "Login successful. Redirecting to Manager Menu..." + RESET);
                 new ManagerMenu(manager).displayMenu();
             } else {
