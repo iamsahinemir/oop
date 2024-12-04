@@ -418,7 +418,7 @@ public class Algorithms {
      * 
      * @param size return de size of main array 
      * @return dataset for value 
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     public static int[] generateDataset(int size) {
         int[] dataset = new int[size];

@@ -2,7 +2,7 @@
  * DatabaseFacade class provides access MYSQL database.
  * Connection class between database and program.
  * 
- * @author Emir Esad Şahin
+ * @author Emir Esad Sahin
  */
 import java.sql.Connection;
 import java.sql.DriverManager;

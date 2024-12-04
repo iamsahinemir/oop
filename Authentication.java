@@ -5,7 +5,7 @@ import java.sql.ResultSet;
  * Authentication class checks variables from database for user login.
  * 
  * 
- * @author Emir Esad Şahin
+ * @author Emir Esad Sahin
  */
 public class Authentication {
     /**

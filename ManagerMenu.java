@@ -9,7 +9,7 @@ public class ManagerMenu {
     
     /**
      * display the main manager menu using some simple system out commands and switch cases
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      * @author Tunahan Tuze
      * @author Dilvin Aydın
      * @author Zülal Sönmez
@@ -109,7 +109,7 @@ public class ManagerMenu {
 
     /**
      * asks manager to enter a role to sort employees by their roles
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     private void displayEmployeesByRole(Scanner scanner) {
         System.out.print("Enter role (e.g., technician, engineer, intern, manager): ");
@@ -140,7 +140,7 @@ public class ManagerMenu {
     /**
      * asks manager to enter a employee username to display information
      * provokes related method from manager class
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     private void displayEmployeeByUsername(Scanner scanner) {
         System.out.print("Enter the username of the employee: ");
@@ -165,7 +165,7 @@ public class ManagerMenu {
         System.out.print("Enter the employee ID to update: ");
         String idInput = scanner.nextLine().trim();
     
-        // Çalışan ID'si doğrulama
+
         if (!idInput.matches("\\d+")) {
             System.out.println("Invalid input. Please enter a valid employee ID.");
             return;
@@ -180,10 +180,10 @@ public class ManagerMenu {
         System.out.println("4. Back to Menu");
         System.out.print("Enter your choice: ");
     
-        // Kullanıcı seçimini al
+
         String choiceInput = scanner.nextLine().trim();
     
-        // Geçerli giriş kontrolü
+
         if (!choiceInput.matches("[1-3]")) {
             System.out.println("Invalid choice. Please select a valid option.");
             return;
@@ -241,7 +241,7 @@ public class ManagerMenu {
      * gets new employee's profile and non-profile fields and provokes hire employee method from manager class
      * 
      * @author Sezai Araplarlı
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     private void hireNewEmployee(Scanner scanner) {
         System.out.print("Enter username: ");
@@ -275,7 +275,7 @@ public class ManagerMenu {
     /**
      * get an input from user to fire user with employee ID
      * checks if input ID is same with himself/herself so that the manager cannot fire himself/herself
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      * @author Sezai Araplarlı
      */
     private void fireEmployee(Scanner scanner) {

@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Login class provides to the user for login to system .
  * 
  * 
- * @author Emir Esad Şahin
+ * @author Emir Esad Sahin
  */
 public class Login {
     /**

@@ -8,7 +8,7 @@ public class RegularMenu {
     }
     /**
      * display the main manager menu using some simple system out commands and switch cases
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      * 
      */
     public void displayMenu() {
@@ -64,7 +64,7 @@ public class RegularMenu {
      * updateProfile updates employees informations in database
      * 
      * @param scanner
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      * 
      */
     private void updateProfile(Scanner scanner) {

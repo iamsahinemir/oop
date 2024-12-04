@@ -14,7 +14,7 @@ public class RegularEmployee extends Employee {
     /**
      * override from abstract employee class
      * to display regular employee's profile
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     @Override
     public void displayProfile() {
@@ -34,7 +34,7 @@ public class RegularEmployee extends Employee {
      * @param newPassword       entered password to be updated
      * @param newPhoneNumber    entered phone number to be updated
      * @param newEmail          entered email to be updated 
-     * @author Emir Esad Şahin
+     * @author Emir Esad Sahin
      */
     public void updateProfile(String newPassword, String newPhoneNumber, String newEmail) {
         try {
