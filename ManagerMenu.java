@@ -139,23 +139,6 @@ public class ManagerMenu {
             int employeeId = scanner.nextInt();
             scanner.nextLine(); // Consume newline
     
-            System.out.print("Enter new name: ");
-            String name = scanner.nextLine();
-            System.out.print("Enter new surname: ");
-            String surname = scanner.nextLine();
-            System.out.print("Enter new role (manager, technician, intern, engineer): ");
-            String role = scanner.nextLine();
-    
-            if (!role.isEmpty() && !role.matches("(?i)manager|technician|intern|engineer")) {
-                Utils.clearConsole();
-                System.out.println("Invalid role. Allowed roles: manager, technician, intern, engineer.");
-                return;
-            }
-            Utils.clearConsole();
-            manager.updateEmployeeNonProfile(employeeId,
-                    name.isEmpty() ? null : name,
-                    surname.isEmpty() ? null : surname,
-                    role.isEmpty() ? null : role);
             // Alt menü
             System.out.println("Select the field to update:");
             System.out.println("1. Name");
@@ -196,11 +179,10 @@ public class ManagerMenu {
                 scanner.nextLine(); // Clear invalid input
             }
         } else {
-            Utils.clearConsole();
             System.out.println("Invalid input. Please enter a valid employee ID.");
             scanner.nextLine(); // Clear invalid input
-        }
-    }
+}
+}
     
     
     private void hireNewEmployee(Scanner scanner) {
@@ -239,10 +221,8 @@ public class ManagerMenu {
     private void fireEmployee(Scanner scanner) {
         System.out.print("Enter the employee ID to fire: ");
         if (scanner.hasNextInt()) {
-            Utils.clearConsole();
             int employeeId = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-            
     
             // Manager'ın kendi ID'siyle karşılaştır
             if (employeeId == manager.getE_id()) {
@@ -253,15 +233,14 @@ public class ManagerMenu {
             try {
                 manager.fireEmployee(employeeId);
             } catch (Exception e) {
-                Utils.clearConsole();
                 System.out.println("Error while firing employee: " + e.getMessage());
             }
         } else {
-            Utils.clearConsole();
             System.out.println("Invalid input. Please enter a valid employee ID.");
             scanner.nextLine(); // Clear invalid input
         }
     }
+    
     
     
 

@@ -196,8 +196,8 @@ public class Manager extends Employee {
             System.out.println("Error updating employee: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("An unexpected error occurred: " + e.getMessage());
-        }
-    }
+}
+}
     
     
 
@@ -319,6 +319,7 @@ public class Manager extends Employee {
             System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
+    
     
     
 }
