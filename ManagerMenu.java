@@ -22,10 +22,6 @@ public class ManagerMenu {
         String whiteBold = "\033[1;37m";    // Kalın Beyaz
         Scanner scanner = new Scanner(System.in);
         while (true) {
-
-            String name = Authentication.getLoggedInName();
-            String surname = Authentication.getLoggedInSurname();
-
             System.out.println(greenBold + "\n=== MANAGER MENU - " + manager.getName() + " " + manager.getSurname() + " ===" + reset);
             System.out.println(blue + "1. Display All Employees" + reset);
             System.out.println(cyan + "2. Display Employees by Role" + reset);
@@ -272,9 +268,9 @@ public class ManagerMenu {
                     case 2:
                         // Update phone number
                         while (true) {
-                            System.out.print("Enter new phone number (11 digits): ");
+                            System.out.print("Enter new phone number : ");
                             String newPhone = scanner.nextLine();
-                            if (newPhone.matches("\\d{11}")) {
+                            if (newPhone.matches("\\d{10,15}")) {
                                 try {
                                     manager.updateOwnProfile(manager.getPassword(), newPhone, manager.getEmail());
                                     Utils.clearConsole();
