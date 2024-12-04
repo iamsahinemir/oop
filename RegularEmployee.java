@@ -11,7 +11,12 @@ public class RegularEmployee extends Employee {
         super(e_id, username, password, role, name, surname, phoneNumber, dateOfBirth, dateOfStart, email);
     }
 
-    @Override // bak
+    /**
+     * override from abstract employee class
+     * to display regular employee's profile
+     * @author Emir Esad Şahin
+     */
+    @Override
     public void displayProfile() {
         System.out.println("\n=== EMPLOYEE PROFILE ===");
         System.out.println(String.format("%-20s : %s", "Name", getName()));
@@ -23,15 +28,23 @@ public class RegularEmployee extends Employee {
     }
     
 
+    /**
+     * checks the entered input first
+     * then it sets password, phone number and email in database to newly entered inputs
+     * @param newPassword       entered password to be updated
+     * @param newPhoneNumber    entered phone number to be updated
+     * @param newEmail          entered email to be updated 
+     * @author Emir Esad Şahin
+     */
     public void updateProfile(String newPassword, String newPhoneNumber, String newEmail) {
         try {
-            // Validating phone number
+            
             if (!isValidPhoneNumber(newPhoneNumber)) {
                 System.out.println("Invalid phone number. Please ensure it contains only numbers and is 11 digits long.");
                 return;
             }
 
-            // Validating email
+            
             if (!isValidEmail(newEmail)) {
                 System.out.println("Invalid email address. Please provide a valid email (e.g., example@example.com).");
                 return;
@@ -42,7 +55,7 @@ public class RegularEmployee extends Employee {
             setEmail(newEmail);
             System.out.println("Profile updated successfully.");
 
-            // Veritabanına güncelleme işlemi
+            
             try (Connection conn = DatabaseFacade.getConnection()) {
                 String query = "UPDATE employees SET password = ?, phone_number = ?, email = ? WHERE e_id = ?";
                 PreparedStatement stmt = conn.prepareStatement(query);
@@ -68,18 +81,26 @@ public class RegularEmployee extends Employee {
         }
     }
 
-    // Telefon numarasının geçerli olup olmadığını kontrol eden metod
+    /**
+     * a regex to format phone number between 10 and 15 digits
+     * @param phoneNumber
+     * @return it means that the parameter and the pattern matches so it returns true
+     */
     private boolean isValidPhoneNumber(String phoneNumber) {
-        // Telefon numarası yalnızca 10 veya 11 haneli olmalıdır
+        
         String phoneRegex = "^\\d{10,15}$";
         Pattern pattern = Pattern.compile(phoneRegex);
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
     }
 
-    // E-posta adresinin geçerli olup olmadığını kontrol eden metod
+    /**
+     * a regex to format email type blabla@blabla.bla
+     * @param email entered email from regular employee to update own profile
+     * @return it means that the parameter and the pattern matches so it returns true
+     */
     private boolean isValidEmail(String email) {
-        // Geçerli bir e-posta formatı
+        
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);

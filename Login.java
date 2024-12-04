@@ -36,7 +36,6 @@ public class Login {
             System.out.println(RED + "You are using the default password. Please change your password." + RESET);
             changePassword(username);
             start();
-            return;
         }
 
         if (role.equals("manager")) {
@@ -64,7 +63,11 @@ public class Login {
             System.out.println(RED + "Invalid login. Please try again." + RESET);
             start();
         }
+
+        scanner.close();
     }
+
+
     /**
      * Collects Manager details from database
      * @return Manager
@@ -94,6 +97,8 @@ public class Login {
         }
         return null;
     }
+
+
     /**
      * Collects Employee details from database
      * @return Regular Employee
@@ -123,6 +128,8 @@ public class Login {
         }
         return null;
     }
+
+
     /**
      * If there is defaultpassword situation, changes to new password
      * Checks username and password

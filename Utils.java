@@ -1,4 +1,10 @@
 public class Utils {
+
+    /**
+     * a method that clears terminal/console
+     * for better user experience
+     * @author Emir Esad Şahin
+     */
     public static void clearConsole() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
