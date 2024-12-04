@@ -6,9 +6,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Algorithms class provides implementations of various sorting algorithms
+ * Radix Sort, Heap Sort, Shell Sort, Insertion Sort, and utility methods.
+ * 
+ * @author Zulal Sonmez
+ * @author Dilvin Aydin
+ * @author Tunahan Tuze
+ */
 public class Algorithms {
-  
-    // kullanıcdan input alma
+     /**
+     * This takes user input for the size of the array to generate.
+     *
+     * @return the valid input number between 1,000 and 10,000
+     * @author Tunahan Tuze
+     */
+    
     public static int User_input() {
         String reset = "\033[0m";
         String blue = "\033[34m";
@@ -34,7 +47,13 @@ public class Algorithms {
             
         }
     }
-    //alınan inputtan random array üretme
+    /**
+     * It generates a random array based on the user input
+     *
+     * @param size_of_array the size of the array to generate
+     * @return  generated random array
+     * @author Tunahan Tuze
+     */
     public static int[] generate_Random_Array(int size_of_array) { 
         Random random = new Random();
         int[] randomArray = new int[size_of_array];
@@ -46,7 +65,14 @@ public class Algorithms {
         return randomArray;
         
     }
-
+     /**
+     * It generates a copy of the given array for Radix Sort.
+     * 
+     * @param randomArray the array to copy
+     * @param size_of_array the size of the array
+     * @return  copied array
+     * @author Tunahan Tuze
+     */
     public static int[] generate_radix_Array(int[] randomArray, int size_of_array){
 
         int[] radix_Array = new int [size_of_array];
@@ -57,6 +83,15 @@ public class Algorithms {
         return radix_Array;
     }
 
+     /**
+     * Generates a copy of the given array for Shell Sort.
+     * 
+     * @param randomArray the array to copy
+     * @param size_of_array the size of the array
+     * @return copied array
+     * @author Tunahan Tuze 
+     */
+
     public static int[] generate_shell_Array(int[] randomArray, int size_of_array){
 
         int[] shell_Array = new int [size_of_array];
@@ -65,7 +100,16 @@ public class Algorithms {
         }
         return shell_Array;
     }   
-        
+    
+     /**
+     * It generates a copy of the given array for Heap Sort.
+     * 
+     * @param randomArray the array to copy
+     * @param size_of_array the size of the array
+     * @return copied array
+     * @author Tunahan Tuze 
+     */
+
     public static int[] generate_heap_Array(int []randomArray, int size_of_array){
 
         int[] heap_Array = new int [size_of_array];
@@ -75,7 +119,14 @@ public class Algorithms {
         }
         return heap_Array;
     }
-    
+     /**
+     * It generates a copy of the given array for insertion dort.
+     * 
+     * @param randomArray the array to copy
+     * @param size_of_array the size of the array
+     * @return copied array
+     * @author Tunahan Tuze 
+     */
     public static int[] generate_insertion_Array(int[] randomArray, int size_of_array){
 
         int[] insertion_Array = new int [size_of_array];
@@ -85,7 +136,17 @@ public class Algorithms {
         
         return insertion_Array;
     }
+
+    /**
+     * This performs radix sort on the input array.
+     * 
+     * @param array the array to be sorted
+     * @return the sorted array
+     * @author Zulal Sonmez
+     * @author Dilvin Aydin
+     */
     
+
     public static int[] radixSort(int[] array) {
         // Negatif ve pozitif sayıları ayır
         int[] negatives = Arrays.stream(array).filter(n -> n < 0).map(n -> -n).toArray(); // Negatifleri pozitif yap
@@ -113,7 +174,10 @@ public class Algorithms {
         return fullArray; 
     }
 
-    
+    /**
+     * It is a helper method in radix sort to sort the  positive part of the array.
+     * @param array the array to sort
+     */
     private static void radixSortPositive(int[] array) {
         int max = Arrays.stream(array).max().orElse(0); 
         for (int exp = 1; max / exp > 0; exp *= 10) {

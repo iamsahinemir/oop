@@ -201,7 +201,7 @@ public class ManagerMenu {
         System.out.print("Enter surname: ");
         String surname = scanner.nextLine();
     
-        System.out.print("Enter phone number (11 digits): ");
+        System.out.print("Enter phone number : ");
         String phone = scanner.nextLine();
     
         System.out.print("Enter email address: ");
@@ -250,7 +250,7 @@ public class ManagerMenu {
         
         String newPhone;
         while (true) {
-            System.out.print("Enter new phone number (numbers only): ");
+            System.out.print("Enter new phone number : ");
             newPhone = scanner.nextLine();
             if (newPhone.matches("\\d+")) { // Telefon numarası sadece sayılar içermelidir
                 break;
@@ -331,7 +331,7 @@ public class ManagerMenu {
             startTime = System.nanoTime();
             Arrays.sort(collectionsData);
             endTime = System.nanoTime();
-            long collectionsExecutionTime = endTime - startTime;
+        
             
     
             // Verify correctness

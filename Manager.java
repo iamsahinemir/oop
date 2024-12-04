@@ -32,8 +32,8 @@ public class Manager extends Employee {
     }
 
     public void updateOwnProfile(String newPassword, String newPhone, String newEmail) {
-        if (!newPhone.matches("\\d{11}")) {
-            System.out.println("Invalid phone number. It must be 11 digits.");
+        if (!newPhone.matches("\\d{10,15}")) {
+            System.out.println("Invalid phone number.");
             return;
         }
         if (!newEmail.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
@@ -263,7 +263,7 @@ public class Manager extends Employee {
     
     // Yardımcı doğrulama metotları
     private boolean isValidPhone(String phone) {
-        return phone.matches("^\\d{11}$");
+        return phone.matches("\\d{10,15}");
     }
     
     private boolean isValidEmail(String email) {
